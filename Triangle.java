@@ -1,6 +1,6 @@
 package com.company;
 import java.io.IOException;
-public class Triangle   {
+public class Triangle implements Shape   {
     private double sideA;
     private double sideB;
     private double sideC;
@@ -8,6 +8,8 @@ public class Triangle   {
         this.sideA=sideA;
         this.sideB=sideB;
         this.sideC=sideC;
+        if((sideA<=0)||(sideB<=0)||(sideC<=0))
+            throw new ArithmeticException("Wrong sides");
         if((sideA+sideB<=sideC) || (sideA+sideC<=sideB)||(sideB+sideC<=sideA)) {
             throw new RuntimeException("Wrong triangle");
         }
@@ -43,6 +45,14 @@ public class Triangle   {
     }
     public double calcPerimetr(){
         return sideA+sideB+sideC;
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle " + "sideA=" + sideA +
+                ", sideB=" + sideB +
+                ", sideC=" + sideC +
+                ' ';
     }
 }
 

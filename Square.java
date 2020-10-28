@@ -1,6 +1,6 @@
 package com.company;
 
-public class Square implements shape {
+public class Square implements Shape {
     private double x;
 
     private double getX(){
@@ -10,7 +10,8 @@ public class Square implements shape {
         this.x=x;
     }
     public Square(double x){
-
+if(x<=0)
+    throw new ArithmeticException("Wrong side");
         this.x=x;
     }
 
@@ -22,5 +23,9 @@ public class Square implements shape {
             return 4 * x;
         }
 
-
+    @Override
+    public String toString() {
+        return "Square " + "x=" + x +
+                ' ';
+    }
 }

@@ -1,43 +1,62 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-	Phonebook book=new Phonebook();
-        Map<String,String> number=new HashMap<String,String>();
-        number.put("89312280810","mobile");
-        number.put("3881622","home");
-	book.AddPhone("Aleksey","Sleptsov",number);
-        Map<String,String> number1=new HashMap<String,String>();
-        number1.put("89054317583","mobile");
-        number1.put("3703455","home");
-        book.AddPhone("Aleksander","Kuznetsnov",number1);
-        Map<String,String> number2=new HashMap<String,String>();
-        number2.put("899912315432","mobile");
-        book.AddPhone("Aleksandra","Kuznetsova",number2);
-        Map<String,String> number3=new HashMap<String,String>();
-        number3.put("89014357856","mobile");
-        number3.put("3156734","home");
-        number3.put("3557190","work");
-        book.AddPhone("Danila","Ilyin",number3);
-        Map<String,String> number4=new HashMap<String,String>();
-        number4.put("890556893","mobile");
-        number4.put("3358877","home");
-        number4.put("30245640","work");
-        book.AddPhone("Dekanat","Kolpakov",number4);
-        System.out.println(book.find("89"));
-        book.delete("Aleksandra","Kuznetsova");
-        Map<String,String> number5=new HashMap<String,String>();
-        number5.put("89055689378","mobile");
-        number5.put("3884554","home");
-        number5.put("3000505","work");
-        number5.put("7348646","mobile");
+        Main object = new Main();
+        List<Shape> shapes = new ArrayList<>();
+        double sum = 0;
+        shapes.add(new Round(7));
+        shapes.add(new Round(5));
+        shapes.add(new Triangle(3, 6, 8));
+        shapes.add(new Triangle(2,3,4));
+        shapes.add(new Rectangle(10, 5));
+        shapes.add(new Rectangle(12,4));
+        shapes.add(new Square(6));
+        shapes.add(new Square(12));
+        for (int i = 0; i < shapes.size(); i++) {
+            sum = sum + shapes.get(i).calcArea();
+        }
+        System.out.println("Sum= " + sum);
+        object.max(shapes);
+    }
 
-        book.update(book.GetPhone("Dekanat","Kolpakov"),"Dekan","Mironov",number5);
-        for(int i=0;i<book.getList_of_phones().size();i++)
-            System.out.println(book.getList_of_phones().get(i).getName()+" "+book.getList_of_phones().get(i).getSurname()+" "+book.getList_of_phones().get(i).getPhones());
+
+    public void max(List<Shape> object) {
+        int maximum = 0;
+        int minimum = 0;
+        int maximumPer = 0;
+        int minimumPer = 0;
+        double maxPer = 0;
+        double minPer = Double.MAX_VALUE;
+        double maxim = 0;
+        double min = Double.MAX_VALUE;
+        for (int i = 0; i < object.size(); i++) {
+            if (object.get(i).calcArea() > maxim) {
+                maxim = object.get(i).calcArea();
+                maximum = i;
+            }
+            if (object.get(i).calcArea() < min) {
+                min = object.get(i).calcArea();
+                minimum = i;
+            }
+            if (object.get(i).calcPerimetr() > maxPer) {
+                maxPer = object.get(i).calcPerimetr();
+                maximumPer = i;
+            }
+            if (object.get(i).calcPerimetr() < minPer) {
+                minPer = object.get(i).calcPerimetr();
+                minimumPer = i;
+            }
+        }
+        System.out.println("Maximum area= " + object.get(maximum).toString());
+        System.out.println("Minimum area= " + object.get(minimum).toString());
+        System.out.println("Maximum perimetr= " + object.get(maximumPer).toString());
+        System.out.println("Minimum perimetr= " + object.get(minimumPer).toString());
     }
 }

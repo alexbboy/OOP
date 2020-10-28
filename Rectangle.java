@@ -1,9 +1,11 @@
 package com.company;
 
-public class Rectangle implements shape{
+public class Rectangle implements Shape{
     private double width;
     private double hight;
     public Rectangle(double width,double hight){
+        if((width<=0)||(hight<=0))
+            throw new ArithmeticException("Wrong side");
         this.hight=hight;
         this.width=width;
     }
@@ -30,4 +32,11 @@ public class Rectangle implements shape{
         return (width+hight)*2;
     }
 
+    @Override
+    public String toString() {
+        return "Rectangle " +
+                "width=" + width +
+                ", hight=" + hight +
+                ' ';
+    }
 }

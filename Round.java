@@ -1,7 +1,7 @@
 package com.company;
 
 
-    public class Round implements shape{
+    public class Round implements Shape{
         private double radius;
         public double getRadius(){
             return radius;
@@ -10,6 +10,8 @@ package com.company;
             this.radius=radius;
         }
         public Round(double radius){
+            if(radius<=0)
+                throw new ArithmeticException("Wrong radius");
             this.radius=radius;
         }
         public double calcArea(){
@@ -17,6 +19,13 @@ package com.company;
         }
         public double calcPerimetr(){
             return 2*Math.PI*radius;
+        }
+
+        @Override
+        public String toString() {
+            return "Round " +
+                    "radius=" + radius +
+                    ' ';
         }
     }
 
