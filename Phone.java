@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.*;
 
-public class Phone {
+public final class Phone {
     private String name;
     private String surname;
     private Map<String,String> phones=new HashMap<String,String>();

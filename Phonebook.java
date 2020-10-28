@@ -3,11 +3,12 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-public class Phonebook {
+public final class Phonebook {
     private List<Phone> List_of_phones=new ArrayList<Phone>();
 
-    public List<Phone> getList_of_phones() {
+    protected List<Phone> getList_of_phones() {
         return List_of_phones;
     }
 
@@ -21,7 +22,7 @@ public class Phonebook {
     }
     public Phone GetPhone(String name,String surname){
         for(int i=0;i<List_of_phones.size();i++){
-            if((List_of_phones.get(i).getName()==name)&&(List_of_phones.get(i).getSurname()==surname))
+            if(equals(List_of_phones.get(i).getName(),name)&&equals(List_of_phones.get(i).getSurname(),surname))
                 return List_of_phones.get(i);
         }
         return null;
@@ -29,7 +30,7 @@ public class Phonebook {
     public List<Phone> update(Phone old,String name,String surname,Map<String,String> phones){
         Phone newPhone=new Phone(name, surname, phones);
         for(int i=0;i<List_of_phones.size();i++){
-            if((List_of_phones.get(i).getName()==old.getName())&&(old.getSurname()== old.getSurname())){
+            if(equals(List_of_phones.get(i).getName(),old.getName())&&equals(old.getSurname(), old.getSurname())){
                 List_of_phones.set(i,newPhone);
                 return List_of_phones;
             }
@@ -40,7 +41,7 @@ public class Phonebook {
         int i=0;
         boolean Delete=false;
         for(i=0;i<List_of_phones.size();i++){
-            if((List_of_phones.get(i).getName()==name)||(List_of_phones.get(i).getSurname()==surname))
+            if(equals(List_of_phones.get(i).getName(),name)||equals(List_of_phones.get(i).getSurname(),surname))
                 Delete=List_of_phones.remove(List_of_phones.get(i));
         }
 
@@ -49,21 +50,33 @@ public class Phonebook {
         }
         throw new RuntimeException("Error! We can't find a number");
     }
-    public void find(String text){
-        System.out.println("Found numbers");
+    public String find(String text){
+        String str="";
+        str=str+"Found numbers"+";";
         for(int i=0;i<List_of_phones.size();i++){
             boolean check=false;
          for(Map.Entry<String,String> entry:List_of_phones.get(i).getPhones().entrySet()){
-             if(entry.getKey().contains(text)==true) {
-                 System.out.println(List_of_phones.get(i).getName() + " " + List_of_phones.get(i).getSurname() + " " + List_of_phones.get(i).getPhones());
+             if(equals(entry.getKey().contains(text),true)) {
+                 str=str+List_of_phones.get(i).getName() + " " + List_of_phones.get(i).getSurname() + " " + List_of_phones.get(i).getPhones()+";";
                  break;
              }
          }
-            if((List_of_phones.get(i).getName().contains(text)==true)||(List_of_phones.get(i).getSurname().contains(text)==true))
+            if(equals(List_of_phones.get(i).getName().contains(text),true)||equals(List_of_phones.get(i).getSurname().contains(text),true))
             {
-                System.out.println(List_of_phones.get(i).getName()+" "+List_of_phones.get(i).getSurname()+" "+List_of_phones.get(i).getPhones());
+                str=str+List_of_phones.get(i).getName()+" "+List_of_phones.get(i).getSurname()+" "+List_of_phones.get(i).getPhones()+";";
             }
         }
-        System.out.println(".....................................................................................................................................");
+
+        return str;
+    }
+
+
+    public boolean equals(Object a,Object b) {
+        return Objects.equals(a,b);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(List_of_phones);
     }
 }

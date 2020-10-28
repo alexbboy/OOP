@@ -28,14 +28,14 @@ public class Main {
         number4.put("3358877","home");
         number4.put("30245640","work");
         book.AddPhone("Dekanat","Kolpakov",number4);
-        book.find("31");
-        book.find("Da");
+        System.out.println(book.find("89"));
         book.delete("Aleksandra","Kuznetsova");
         Map<String,String> number5=new HashMap<String,String>();
         number5.put("89055689378","mobile");
         number5.put("3884554","home");
         number5.put("3000505","work");
         number5.put("7348646","mobile");
+
         book.update(book.GetPhone("Dekanat","Kolpakov"),"Dekan","Mironov",number5);
         for(int i=0;i<book.getList_of_phones().size();i++)
             System.out.println(book.getList_of_phones().get(i).getName()+" "+book.getList_of_phones().get(i).getSurname()+" "+book.getList_of_phones().get(i).getPhones());

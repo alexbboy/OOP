@@ -1,8 +1,8 @@
 package com.company;
 
-public class Number {
-    public String numb;
-    public String type;
+public final class Number {
+    private String numb;
+    private String type;
 
     public String getNumb() {
         return numb;
