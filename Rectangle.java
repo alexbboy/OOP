@@ -1,6 +1,10 @@
 package com.company;
 
-public class Rectangle implements Shape{
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Rectangle implements Shape, Serializable {
     private double width;
     private double hight;
     public Rectangle(double width,double hight){
@@ -9,6 +13,7 @@ public class Rectangle implements Shape{
         this.hight=hight;
         this.width=width;
     }
+
 
     public double getHight() {
         return hight;

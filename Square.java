@@ -1,6 +1,10 @@
 package com.company;
 
-public class Square implements Shape {
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Square implements Shape, Serializable {
     private double x;
 
     private double getX(){
@@ -14,6 +18,7 @@ if(x<=0)
     throw new ArithmeticException("Wrong side");
         this.x=x;
     }
+
 
         public double calcArea() {
             return x * x;
