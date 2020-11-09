@@ -1,6 +1,9 @@
 package com.company;
-import java.io.IOException;
-public class Triangle implements Shape   {
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Triangle implements Shape, Serializable {
     private double sideA;
     private double sideB;
     private double sideC;
@@ -27,17 +30,6 @@ public class Triangle implements Shape   {
         return sideC;
     }
 
-    public void setSideA(double sideA) {
-        this.sideA = sideA;
-    }
-
-    public void setSideB(double sideB) {
-        this.sideB = sideB;
-    }
-
-    public void setSideC(double sideC) {
-        this.sideC = sideC;
-    }
     public double calcArea(){
         double p=(sideA+sideB+sideC)/2;
         double area=Math.sqrt(p*(p-sideA)*(p-sideB)*(p-sideC));
@@ -46,6 +38,7 @@ public class Triangle implements Shape   {
     public double calcPerimetr(){
         return sideA+sideB+sideC;
     }
+
 
     @Override
     public String toString() {

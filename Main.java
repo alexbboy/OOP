@@ -1,44 +1,70 @@
 package com.company;
 
+
+import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) {
-	Phonebook book=new Phonebook();
-	List<Number> list=new ArrayList<Number>();
-	Number number1=new Number("89312280810","Home");
-        Number number2=new Number("3568329","Mobile");
-        list.add(0,number1);
-        list.add(1,number2);
-        book.AddPhone("Aleksey","Sleptsov",list);
-        List<Number> list2=new ArrayList<Number>();
-        Number number3=new Number("89116474185","Home");
-        Number number4=new Number("3585047","Mobile");
-        list2.add(0,number3);
-        list2.add(1,number4);
-        book.AddPhone("Danila","Ilyin",list2);
-        List<Number> list3=new ArrayList<Number>();
-        Number number5=new Number("675849582","Mobile");
-        Number number6=new Number("3585047","Home");
-        list3.add(0,number5);
-        list3.add(1,number6);
-        book.AddPhone("aleksender","Volkov",list3);
-        List<Phone> test=book.find("89");
-        for(int i=0;i<book.getList_of_phones().size();i++){
-            System.out.println(book.getList_of_phones().get(i).getName()+" "+book.getList_of_phones().get(i).getSurname());
-            for(int j=0;j<book.getList_of_phones().get(i).getPhones().size();j++)
-                System.out.println(book.getList_of_phones().get(i).getPhones().get(j).getNumb()+" "+book.getList_of_phones().get(i).getPhones().get(j).getType());
-            System.out.println("...................................................................");
+
+        List<Shape> shapes = new ArrayList<>();
+        double sum = 0;
+        shapes.add(new Round(7));
+        shapes.add(new Round(5));
+        shapes.add(new Triangle(3, 6, 8));
+        shapes.add(new Triangle(2,3,4));
+        shapes.add(new Rectangle(10, 5));
+        shapes.add(new Rectangle(12,4));
+        shapes.add(new Square(6));
+        shapes.add(new Square(12));
+        for (int i = 0; i < shapes.size(); i++) {
+            sum = sum + shapes.get(i).calcArea();
         }
-        System.out.println("Fonded numbers");
-        for(int i=0;i<test.size();i++){
-           System.out.println(test.get(i).getName()+" "+test.get(i).getSurname());
-           for(int j=0;j<test.get(i).getPhones().size();j++)
-               System.out.println(test.get(i).getPhones().get(j).getNumb()+" "+test.get(i).getPhones().get(j).getType());
+        System.out.println("Sum= " + sum);
+SerializeAll Save=new SerializeAll();
+Save.save(shapes);
+List<Shape> shapes1=new ArrayList<>();
+shapes1=Save.load();
+for(int i=0;i<shapes1.size();i++){
+    System.out.println(shapes1.get(i).toString());
+}
+}
+
+
+
+    public void max(List<Shape> object) {
+        int maximum = 0;
+        int minimum = 0;
+        int maximumPer = 0;
+        int minimumPer = 0;
+        double maxPer = 0;
+        double minPer = Double.MAX_VALUE;
+        double maxim = 0;
+        double min = Double.MAX_VALUE;
+        for (int i = 0; i < object.size(); i++) {
+            if (object.get(i).calcArea() > maxim) {
+                maxim = object.get(i).calcArea();
+                maximum = i;
+            }
+            if (object.get(i).calcArea() < min) {
+                min = object.get(i).calcArea();
+                minimum = i;
+            }
+            if (object.get(i).calcPerimetr() > maxPer) {
+                maxPer = object.get(i).calcPerimetr();
+                maximumPer = i;
+            }
+            if (object.get(i).calcPerimetr() < minPer) {
+                minPer = object.get(i).calcPerimetr();
+                minimumPer = i;
+            }
         }
+        System.out.println("Maximum area= " + object.get(maximum).toString());
+        System.out.println("Minimum area= " + object.get(minimum).toString());
+        System.out.println("Maximum perimetr= " + object.get(maximumPer).toString());
+        System.out.println("Minimum perimetr= " + object.get(minimumPer).toString());
     }
 }

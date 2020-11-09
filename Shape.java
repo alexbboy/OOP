@@ -1,6 +1,10 @@
 package com.company;
 
-public interface Shape {
+import java.io.Serializable;
+import java.util.List;
+
+public interface Shape extends Serializable {
     double calcArea();
     double calcPerimetr();
+
 }
