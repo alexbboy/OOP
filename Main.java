@@ -1,43 +1,44 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) {
 	Phonebook book=new Phonebook();
-        Map<String,String> number=new HashMap<String,String>();
-        number.put("89312280810","mobile");
-        number.put("3881622","home");
-	book.AddPhone("Aleksey","Sleptsov",number);
-        Map<String,String> number1=new HashMap<String,String>();
-        number1.put("89054317583","mobile");
-        number1.put("3703455","home");
-        book.AddPhone("Aleksander","Kuznetsnov",number1);
-        Map<String,String> number2=new HashMap<String,String>();
-        number2.put("899912315432","mobile");
-        book.AddPhone("Aleksandra","Kuznetsova",number2);
-        Map<String,String> number3=new HashMap<String,String>();
-        number3.put("89014357856","mobile");
-        number3.put("3156734","home");
-        number3.put("3557190","work");
-        book.AddPhone("Danila","Ilyin",number3);
-        Map<String,String> number4=new HashMap<String,String>();
-        number4.put("890556893","mobile");
-        number4.put("3358877","home");
-        number4.put("30245640","work");
-        book.AddPhone("Dekanat","Kolpakov",number4);
-        System.out.println(book.find("89"));
-        book.delete("Aleksandra","Kuznetsova");
-        Map<String,String> number5=new HashMap<String,String>();
-        number5.put("89055689378","mobile");
-        number5.put("3884554","home");
-        number5.put("3000505","work");
-        number5.put("7348646","mobile");
-
-        book.update(book.GetPhone("Dekanat","Kolpakov"),"Dekan","Mironov",number5);
-        for(int i=0;i<book.getList_of_phones().size();i++)
-            System.out.println(book.getList_of_phones().get(i).getName()+" "+book.getList_of_phones().get(i).getSurname()+" "+book.getList_of_phones().get(i).getPhones());
+	List<Number> list=new ArrayList<Number>();
+	Number number1=new Number("89312280810","Home");
+        Number number2=new Number("3568329","Mobile");
+        list.add(0,number1);
+        list.add(1,number2);
+        book.AddPhone("Aleksey","Sleptsov",list);
+        List<Number> list2=new ArrayList<Number>();
+        Number number3=new Number("89116474185","Home");
+        Number number4=new Number("3585047","Mobile");
+        list2.add(0,number3);
+        list2.add(1,number4);
+        book.AddPhone("Danila","Ilyin",list2);
+        List<Number> list3=new ArrayList<Number>();
+        Number number5=new Number("675849582","Mobile");
+        Number number6=new Number("3585047","Home");
+        list3.add(0,number5);
+        list3.add(1,number6);
+        book.AddPhone("aleksender","Volkov",list3);
+        List<Phone> test=book.find("89");
+        for(int i=0;i<book.getList_of_phones().size();i++){
+            System.out.println(book.getList_of_phones().get(i).getName()+" "+book.getList_of_phones().get(i).getSurname());
+            for(int j=0;j<book.getList_of_phones().get(i).getPhones().size();j++)
+                System.out.println(book.getList_of_phones().get(i).getPhones().get(j).getNumb()+" "+book.getList_of_phones().get(i).getPhones().get(j).getType());
+            System.out.println("...................................................................");
+        }
+        System.out.println("Fonded numbers");
+        for(int i=0;i<test.size();i++){
+           System.out.println(test.get(i).getName()+" "+test.get(i).getSurname());
+           for(int j=0;j<test.get(i).getPhones().size();j++)
+               System.out.println(test.get(i).getPhones().get(j).getNumb()+" "+test.get(i).getPhones().get(j).getType());
+        }
     }
 }

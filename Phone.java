@@ -5,11 +5,15 @@ import java.util.*;
 public final class Phone {
     private String name;
     private String surname;
-    private Map<String,String> phones=new HashMap<String,String>();
-Phone(String name,String surname,Map<String,String> phones){
+List<Number> phones=new ArrayList();
+Phone(String name,String surname,List<Number> phones){
+    this.name=new String();
     this.name=name;
+    this.surname=new String();
     this.surname=surname;
-   this.phones = phones;
+    this.phones=new ArrayList<>();
+    for(Number number:phones)
+   this.phones.add(number);
 }
 
     public String getName() {
@@ -19,22 +23,11 @@ Phone(String name,String surname,Map<String,String> phones){
     public String getSurname() {
         return surname;
     }
-
-    public Map<String, String> getPhones() {
+    public List<Number> getPhones() {
         return phones;
     }
 
-    public void setPhones(Map<String, String> phones) {
-        this.phones = phones;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
     @Override
     public String toString() {
