@@ -4,13 +4,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SerializeAll {
+public class SerializeAll implements Serializable{
     private List<Shape> list=new ArrayList<>();
+private String filename;
 
+SerializeAll(String string){
+    this.filename=string;
+}
 
     public void save(List<Shape> list) {
-        try (FileOutputStream file = new FileOutputStream("C:\\Users\\Alex\\Desktop\\Save.json");
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(file)){
+        try(FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(file)) {
 
             objectOutputStream.writeObject(list);
 
@@ -32,10 +36,14 @@ public class SerializeAll {
     }
 
     public List<Shape> load(){
+
         List<Shape> newlist = new ArrayList<>();
-        try(FileInputStream file = new FileInputStream("C:\\Users\\Alex\\Desktop\\Save.json");
-            ObjectInputStream objectOutputStream = new ObjectInputStream(file);) {
+        try(FileInputStream file = new FileInputStream(filename);
+       ObjectInputStream objectOutputStream = new ObjectInputStream(file)) {
+
             newlist=(List<Shape>) objectOutputStream.readObject();
+
+
         }
         catch(NullPointerException d){
             throw new NullPointerException("File is empty");
