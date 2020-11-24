@@ -17,20 +17,41 @@ public class Main {
         shapes.add(new Triangle(3, 6, 8));
         shapes.add(new Triangle(2,3,4));
         shapes.add(new Rectangle(10, 5));
-        shapes.add(new Rectangle(12,4));
-        shapes.add(new Square(6));
+
         shapes.add(new Square(12));
         for (int i = 0; i < shapes.size(); i++) {
             sum = sum + shapes.get(i).calcArea();
         }
         System.out.println("Sum= " + sum);
-SerializeAll Save=new SerializeAll();
-Save.save(shapes);
+        String filename="C:\\Users\\Alex\\Desktop\\Save.ser";
+SerializeAll Save=new SerializeAll(filename);
+
 List<Shape> shapes1=new ArrayList<>();
-shapes1=Save.load();
+try {
+    Save.save(shapes);
+}
+catch (FileNotFoundException e ){
+    throw  new RuntimeException("File not found",e);
+}
+catch (IOException d){
+    throw new RuntimeException("Failed",d);
+}
+try {
+    shapes1 = Save.load();
+}
+catch (FileNotFoundException e){
+    throw new RuntimeException("File not found",e);
+}
+catch (ClassNotFoundException d){
+    throw new RuntimeException("Exception",d);
+}
+catch (IOException q){
+    throw new RuntimeException("Failed",q);
+}
 for(int i=0;i<shapes1.size();i++){
     System.out.println(shapes1.get(i).toString());
 }
+
 }
 
 
@@ -67,4 +88,9 @@ for(int i=0;i<shapes1.size();i++){
         System.out.println("Maximum perimetr= " + object.get(maximumPer).toString());
         System.out.println("Minimum perimetr= " + object.get(minimumPer).toString());
     }
+
+
+
+
+
 }
