@@ -1,8 +1,5 @@
 import javax.swing.*;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +32,7 @@ public class Form extends JFrame implements Serializable {
 
 
     public Form(String filename) {
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel(new BorderLayout(10, 10));
         this.filename = filename;
@@ -113,34 +110,44 @@ public class Form extends JFrame implements Serializable {
         label.setVisible(true);
         label.setForeground(Color.BLUE);
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                try {
-                    serialize.save(list);
-                } catch (FileNotFoundException d) {
-                    throw new RuntimeException("File not found", d);
-                } catch (IOException d) {
-                    throw new RuntimeException("Failed", d);
-                }
-                System.exit(0);
-            }
-        });
+ model.addListDataListener(new ListDataListener() {
+     @Override
+     public void intervalAdded(ListDataEvent e) {
+         try {
+             serialize.save(list);
+         } catch (FileNotFoundException d) {
+             throw new RuntimeException("File not found", d);
+         } catch (IOException d) {
+             throw new RuntimeException("Failed", d);
+         }
+     }
+
+     @Override
+     public void intervalRemoved(ListDataEvent e) {
+         try {
+             serialize.save(list);
+         } catch (FileNotFoundException d) {
+             throw new RuntimeException("File not found", d);
+         } catch (IOException d) {
+             throw new RuntimeException("Failed", d);
+         }
+     }
+
+     @Override
+     public void contentsChanged(ListDataEvent e) {
+         try {
+             serialize.save(list);
+         } catch (FileNotFoundException d) {
+             throw new RuntimeException("File not found", d);
+         } catch (IOException d) {
+             throw new RuntimeException("Failed", d);
+         }
+     }
+ });
 
 
-        remove.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (jList.getSelectedIndex() != -1) {
 
-                    int i = jList.getSelectedIndex();
 
-                    model.remove(i);
-                    list.remove(i);
-                }
-            }
-        });
 
         createTriangle.addActionListener(new ActionListener() {
             @Override
