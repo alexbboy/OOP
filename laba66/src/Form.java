@@ -146,7 +146,18 @@ public class Form extends JFrame implements Serializable {
  });
 
 
+        remove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (jList.getSelectedIndex() != -1) {
 
+                    int i = jList.getSelectedIndex();
+
+                    model.remove(i);
+                    list.remove(i);
+                }
+            }
+        });
 
 
         createTriangle.addActionListener(new ActionListener() {
