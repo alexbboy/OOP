@@ -12,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 public class Form extends JFrame {
     private final JTable table = new JTable();
     private String filename;
@@ -214,32 +215,21 @@ public class Form extends JFrame {
                         buttons1.add(ok);
                         buttons1.add(Box.createHorizontalStrut(10));
                         buttons1.add(cancel3);
-                        ok.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e114) {
-                                Student student = new Student(Integer.parseInt(grouptext.getText()), name112.getText(), surname1.getText());
-                                students.addElement(student);
-                                studentList.add(student);
-                                newstudent12.dispose();
-                                newstudent12.setVisible(false);
-                            }
+                        ok.addActionListener(e1141 -> {
+                            Student student = new Student(Integer.parseInt(grouptext.getText()), name112.getText(), surname1.getText());
+                            students.addElement(student);
+                            studentList.add(student);
+                            newstudent12.dispose();
+                            newstudent12.setVisible(false);
                         });
-                        cancel3.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e114) {
-                                newstudent12.dispose();
-                            }
-                        });
+                        cancel3.addActionListener(e11412 -> newstudent12.dispose());
 
                     });
-                    delete.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e1) {
-                            if (listOfStudent.getSelectedIndex() != -1) {
-                                students.remove(listOfStudent.getSelectedIndex());
-                                studentList.remove(listOfStudent.getSelectedIndex());
+                    delete.addActionListener(e1110 -> {
+                        if (listOfStudent.getSelectedIndex() != -1) {
+                            students.remove(listOfStudent.getSelectedIndex());
+                            studentList.remove(listOfStudent.getSelectedIndex());
 
-                            }
                         }
                     });
 ////////////////////////////////////////////////////////////////////////////////
@@ -250,12 +240,12 @@ public class Form extends JFrame {
                         }
                         JFrame newgrade = new JFrame("Работа с оценками");
                         newgrade.setSize(500, 500);
-                        List<Grade> gradeList = new ArrayList<Grade>(studentList.get(listOfStudent.getSelectedIndex()).getGrades());
-                        DefaultListModel<Grade> grade = new DefaultListModel<Grade>();
+                        List<Grade> gradeList = new ArrayList<>(studentList.get(listOfStudent.getSelectedIndex()).getGrades());
+                        DefaultListModel<Grade> grade = new DefaultListModel<>();
                         for (Grade value : gradeList) {
                             grade.addElement(value);
                         }
-                        JList<Grade> listOfGrades = new JList<Grade>(grade);
+                        JList<Grade> listOfGrades = new JList<>(grade);
                         JScrollPane jScrollPane2 = new JScrollPane(listOfGrades) {
                             @Override
                             public Dimension getPreferredSize() {
@@ -292,75 +282,72 @@ public class Form extends JFrame {
                                 newgrade.dispose();
                             }
                         });
-                        addGrade.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e113) {
+                        addGrade.addActionListener(e1131 -> {
 
-                                JFrame updateGrade = new JFrame("Новая оценка");
-                                updateGrade.setSize(300, 300);
-                                updateGrade.setVisible(true);
-                                JPanel forText = new JPanel();
-                                JPanel forButtons = new JPanel();
-                                forButtons.setLayout(new BoxLayout(forButtons, BoxLayout.X_AXIS));
-                                JLabel describtion = new JLabel("Введите оценку");
-                                JButton addGrade = new JButton("Добавить");
-                                JButton cancelGrade = new JButton("Отмена");
+                            JFrame updateGrade = new JFrame("Новая оценка");
+                            updateGrade.setSize(300, 300);
+                            updateGrade.setVisible(true);
+                            JPanel forText = new JPanel();
+                            JPanel forButtons = new JPanel();
+                            forButtons.setLayout(new BoxLayout(forButtons, BoxLayout.X_AXIS));
+                            JLabel describtion = new JLabel("Введите оценку");
+                            JButton addGrade12 = new JButton("Добавить");
+                            JButton cancelGrade = new JButton("Отмена");
 
-                                JPanel fake = new JPanel();
-                                JPanel fake2 = new JPanel();
-                                updateGrade.add(fake, BorderLayout.NORTH);
-                                JComboBox typeOfGrade = new JComboBox();
-                                typeOfGrade.setModel(new DefaultComboBoxModel(Grade.type.values()));
-                                describtion.setFont(new Font("Verdana", Font.PLAIN, 20));
-                                JTextField GradesField = new JTextField();
-                                forText.setLayout(new BoxLayout(forText, BoxLayout.Y_AXIS));
-                                updateGrade.add(forText, BorderLayout.CENTER);
-                                updateGrade.add(forButtons, BorderLayout.SOUTH);
-                                updateGrade.add(fake2, BorderLayout.EAST);
-                                forText.add(Box.createVerticalStrut(50));
-                                forText.add(describtion);
-                                forText.add(Box.createHorizontalStrut(60));
-                                forText.add(Box.createVerticalStrut(20));
-                                forText.add(GradesField);
-                                forText.add(Box.createVerticalStrut(50));
-                                forText.add(typeOfGrade);
-                                forText.add(Box.createVerticalStrut(50));
-                                forButtons.add(Box.createHorizontalStrut(30));
-                                forButtons.add(addGrade);
-                                forButtons.add(Box.createHorizontalStrut(20));
-                                forButtons.add(cancelGrade);
+                            JPanel fake = new JPanel();
+                            JPanel fake2 = new JPanel();
+                            updateGrade.add(fake, BorderLayout.NORTH);
+                            JComboBox typeOfGrade = new JComboBox();
+                            typeOfGrade.setModel(new DefaultComboBoxModel(Grade.type.values()));
+                            describtion.setFont(new Font("Verdana", Font.PLAIN, 20));
+                            JTextField GradesField = new JTextField();
+                            forText.setLayout(new BoxLayout(forText, BoxLayout.Y_AXIS));
+                            updateGrade.add(forText, BorderLayout.CENTER);
+                            updateGrade.add(forButtons, BorderLayout.SOUTH);
+                            updateGrade.add(fake2, BorderLayout.EAST);
+                            forText.add(Box.createVerticalStrut(50));
+                            forText.add(describtion);
+                            forText.add(Box.createHorizontalStrut(60));
+                            forText.add(Box.createVerticalStrut(20));
+                            forText.add(GradesField);
+                            forText.add(Box.createVerticalStrut(50));
+                            forText.add(typeOfGrade);
+                            forText.add(Box.createVerticalStrut(50));
+                            forButtons.add(Box.createHorizontalStrut(30));
+                            forButtons.add(addGrade12);
+                            forButtons.add(Box.createHorizontalStrut(20));
+                            forButtons.add(cancelGrade);
 
-                                addGrade.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e113) {
-                                        try {
-                                            Integer.parseInt(GradesField.getText());
-                                        } catch (NumberFormatException n) {
-                                            JOptionPane.showMessageDialog(null, "Введите число, а не букву", "Error!", JOptionPane.ERROR_MESSAGE);
+                            addGrade12.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e1131) {
+                                    try {
+                                        Integer.parseInt(GradesField.getText());
+                                    } catch (NumberFormatException n) {
+                                        JOptionPane.showMessageDialog(null, "Введите число, а не букву", "Error!", JOptionPane.ERROR_MESSAGE);
 
-                                        }
-                                        if ((Integer.parseInt(GradesField.getText()) != 1) && (Integer.parseInt(GradesField.getText()) != 2) && (Integer.parseInt(GradesField.getText()) != 3) && (Integer.parseInt(GradesField.getText()) != 4) && (Integer.parseInt(GradesField.getText()) != 5))
-                                            JOptionPane.showMessageDialog(null, "Введите оценку по пятибальной шкале!", "Error!", JOptionPane.ERROR_MESSAGE);
-                                        Grade grade1 = new Grade(Integer.parseInt(GradesField.getText()), (Grade.type) typeOfGrade.getSelectedItem());
-                                        grade.addElement(grade1);
-                                        gradeList.add(grade1);
-                                        studentList.get(listOfStudent.getSelectedIndex()).AddGrade(grade1);
-                                        Student student = new Student(studentList.get(index).getGroup(), studentList.get(index).getName(), studentList.get(index).getSurname());
-                                        student.AddGrade(grade1);
-
-                                        updateGrade.dispose();
-                                        updateGrade.setVisible(false);
-                                        listOfStudent.updateUI();
                                     }
+                                    if ((Integer.parseInt(GradesField.getText()) != 1) && (Integer.parseInt(GradesField.getText()) != 2) && (Integer.parseInt(GradesField.getText()) != 3) && (Integer.parseInt(GradesField.getText()) != 4) && (Integer.parseInt(GradesField.getText()) != 5))
+                                        JOptionPane.showMessageDialog(null, "Введите оценку по пятибальной шкале!", "Error!", JOptionPane.ERROR_MESSAGE);
+                                    Grade grade1 = new Grade(Integer.parseInt(GradesField.getText()), (Grade.type) typeOfGrade.getSelectedItem());
+                                    grade.addElement(grade1);
+                                    gradeList.add(grade1);
+                                    studentList.get(listOfStudent.getSelectedIndex()).AddGrade(grade1);
+                                    Student student = new Student(studentList.get(index).getGroup(), studentList.get(index).getName(), studentList.get(index).getSurname());
+                                    student.AddGrade(grade1);
 
-                                });
-                                cancelGrade.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e113) {
-                                        updateGrade.dispose();
-                                    }
-                                });
-                            }
+                                    updateGrade.dispose();
+                                    updateGrade.setVisible(false);
+                                    listOfStudent.updateUI();
+                                }
+
+                            });
+                            cancelGrade.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e1131) {
+                                    updateGrade.dispose();
+                                }
+                            });
                         });
                         deleteGrade.addActionListener(new ActionListener() {
                             @Override
@@ -449,85 +436,70 @@ public class Form extends JFrame {
                                             ForName.add(Box.createVerticalStrut(100));
                                             SavingName.add(ForButtonSave, BorderLayout.SOUTH);
                                             SavingName.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                                            CancelSave.addActionListener(new ActionListener() {
-                                                @Override
-                                                public void actionPerformed(ActionEvent e113) {
-                                                    SavingName.dispose();
-                                                }
-                                            });
-                                            CommitSave.addActionListener(new ActionListener() {
-                                                @Override
-                                                public void actionPerformed(ActionEvent e113) {
-                                                    Group saveGroup = new Group(Integer.parseInt(grouptext.getText()));
-                                                    for (Student student : studentList) saveGroup.add(student);
-                                                    Discipline SavingDiscipline = new Discipline(nametext.getText(), surnametext.getText(), disciplinetext.getText(), saveGroup);
-                                                    For_Save object = new For_Save(Forsave.getText(), SavingDiscipline);
-                                                    List_for_Save.add(object);
-                                                    try {
-                                                        ObjectSave.save(List_for_Save);
-                                                    } catch (FileNotFoundException d) {
-                                                        JOptionPane.showMessageDialog(null, "File not found!", "Error!", JOptionPane.ERROR_MESSAGE);
-                                                    } catch (IOException d) {
-                                                        JOptionPane.showMessageDialog(null, "Такой файл существует!", "Error!", JOptionPane.ERROR_MESSAGE);
+                                            CancelSave.addActionListener(e11312 -> SavingName.dispose());
+                                            CommitSave.addActionListener(e11313 -> {
+                                                Group saveGroup = new Group(Integer.parseInt(grouptext.getText()));
+                                                for (Student student : studentList) saveGroup.add(student);
+                                                Discipline SavingDiscipline = new Discipline(nametext.getText(), surnametext.getText(), disciplinetext.getText(), saveGroup);
+                                                For_Save object = new For_Save(Forsave.getText(), SavingDiscipline);
+                                                List_for_Save.add(object);
+                                                try {
+                                                    ObjectSave.save(List_for_Save);
+                                                } catch (FileNotFoundException d) {
+                                                    JOptionPane.showMessageDialog(null, "File not found!", "Error!", JOptionPane.ERROR_MESSAGE);
+                                                } catch (IOException d) {
+                                                    JOptionPane.showMessageDialog(null, "Такой файл существует!", "Error!", JOptionPane.ERROR_MESSAGE);
 
-                                                    }
-                                                    SavingName.dispose();
                                                 }
+                                                SavingName.dispose();
                                             });
 
                                         }
                                     });
-                                    excel.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e113) {
-                                            JFrame ExcSavingName = new JFrame("Введите название");
-                                            ExcSavingName.setSize(300, 300);
-                                            ExcSavingName.setVisible(true);
-                                            JLabel ExcSaveName = new JLabel("Введите название");
-                                            JPanel ExcForName = new JPanel();
-                                            JPanel ExcForButtonSave = new JPanel();
-                                            JTextField ExcForsave = new JTextField();
-                                            JButton ExcCommitSave = new JButton("Готово");
-                                            JButton ExcCancelSave = new JButton("Отмена");
-                                            ExcForButtonSave.setLayout(new BoxLayout(ExcForButtonSave, BoxLayout.X_AXIS));
-                                            ExcForName.setLayout(new BoxLayout(ExcForName, BoxLayout.Y_AXIS));
-                                            ExcForButtonSave.add(Box.createHorizontalStrut(30));
-                                            ExcForButtonSave.add(ExcCommitSave);
-                                            ExcForButtonSave.add(Box.createHorizontalStrut(20));
-                                            ExcForButtonSave.add(ExcCancelSave);
-                                            ExcSaveName.setFont(new Font("Verdana", Font.PLAIN, 20));
-                                            ExcSavingName.add(ExcForName, BorderLayout.CENTER);
-                                            ExcForName.add(Box.createVerticalStrut(50));
-                                            ExcForName.add(ExcSaveName);
-                                            ExcForName.add(Box.createVerticalStrut(30));
-                                            ExcForName.add(ExcForsave);
-                                            ExcForName.add(Box.createVerticalStrut(100));
-                                            ExcSavingName.add(ExcForButtonSave, BorderLayout.SOUTH);
-                                            ExcSavingName.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                                            ExcCancelSave.addActionListener(new ActionListener() {
-                                                @Override
-                                                public void actionPerformed(ActionEvent e113) {
-                                                    ExcSavingName.dispose();
-                                                }
-                                            });
-                                            ExcCommitSave.addActionListener(e112 -> {
-try {
-ExportExcel(table,ExcForsave.getText());
-}
-catch(IOException d){
-throw new RuntimeException("Exception");
-}
-ExcSavingName.dispose();
-                                            });
+                                    excel.addActionListener(e11314 -> {
+                                        JFrame ExcSavingName = new JFrame("Введите название");
+                                        ExcSavingName.setSize(300, 300);
+                                        ExcSavingName.setVisible(true);
+                                        JLabel ExcSaveName = new JLabel("Введите название");
+                                        JPanel ExcForName = new JPanel();
+                                        JPanel ExcForButtonSave = new JPanel();
+                                        JTextField ExcForsave = new JTextField();
+                                        JButton ExcCommitSave = new JButton("Готово");
+                                        JButton ExcCancelSave = new JButton("Отмена");
+                                        ExcForButtonSave.setLayout(new BoxLayout(ExcForButtonSave, BoxLayout.X_AXIS));
+                                        ExcForName.setLayout(new BoxLayout(ExcForName, BoxLayout.Y_AXIS));
+                                        ExcForButtonSave.add(Box.createHorizontalStrut(30));
+                                        ExcForButtonSave.add(ExcCommitSave);
+                                        ExcForButtonSave.add(Box.createHorizontalStrut(20));
+                                        ExcForButtonSave.add(ExcCancelSave);
+                                        ExcSaveName.setFont(new Font("Verdana", Font.PLAIN, 20));
+                                        ExcSavingName.add(ExcForName, BorderLayout.CENTER);
+                                        ExcForName.add(Box.createVerticalStrut(50));
+                                        ExcForName.add(ExcSaveName);
+                                        ExcForName.add(Box.createVerticalStrut(30));
+                                        ExcForName.add(ExcForsave);
+                                        ExcForName.add(Box.createVerticalStrut(100));
+                                        ExcSavingName.add(ExcForButtonSave, BorderLayout.SOUTH);
+                                        ExcSavingName.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                                        ExcCancelSave.addActionListener(new ActionListener() {
+                                            @Override
+                                            public void actionPerformed(ActionEvent e11314) {
+                                                ExcSavingName.dispose();
+                                            }
+                                        });
+                                        ExcCommitSave.addActionListener(e112 -> {
+                                            try {
+                                                ExportExcel(table, ExcForsave.getText());
+                                            } catch (IOException d) {
+                                                throw new RuntimeException("Exception");
+                                            }
+                                            ExcSavingName.dispose();
+                                        });
 
-                                        }
                                     });
-                                    Back.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e113) {
-                                            newGroup.setVisible(true);
-                                            save.setVisible(false);
-                                        }
+                                    Back.addActionListener(e11315 -> {
+                                        newGroup.setVisible(true);
+                                        save.setVisible(false);
                                     });
 
                                 }
@@ -553,17 +525,17 @@ ExcSavingName.dispose();
             OpenFrame.setVisible(true);
             OpenFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
             JLabel Title = new JLabel("Открыть ведомость");
-            JButton OpenList=new JButton("Открыть");
-            JButton DeleteSave=new JButton("Удалить Ведомость");
-            JButton Back=new JButton("Назад");
+            JButton OpenList = new JButton("Открыть");
+            JButton DeleteSave = new JButton("Удалить Ведомость");
+            JButton Back = new JButton("Назад");
             Title.setFont(new Font("Verdana", Font.PLAIN, 20));
             JPanel ForLabel = new JPanel();
             ForLabel.add(Title, BorderLayout.CENTER);
             OpenFrame.add(ForLabel, BorderLayout.NORTH);
             JPanel ForList = new JPanel();
-            JPanel ForButtons=new JPanel();
+            JPanel ForButtons = new JPanel();
 
-            ForButtons.setLayout(new BoxLayout(ForButtons,BoxLayout.Y_AXIS));
+            ForButtons.setLayout(new BoxLayout(ForButtons, BoxLayout.Y_AXIS));
             ForButtons.add(Box.createVerticalStrut(30));
             ForButtons.add(OpenList);
             ForButtons.add(Box.createVerticalStrut(20));
@@ -582,7 +554,7 @@ ExcSavingName.dispose();
             jScrollPane.setAlignmentY(JScrollPane.TOP_ALIGNMENT);
             ForList.add(jScrollPane, BorderLayout.SOUTH);
             OpenFrame.add(ForList, BorderLayout.CENTER);
-            OpenFrame.add(ForButtons,BorderLayout.EAST);
+            OpenFrame.add(ForButtons, BorderLayout.EAST);
             OpenFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
             Back.addActionListener(e13 -> OpenFrame.dispose());
             DeleteSave.addActionListener(new ActionListener() {
@@ -599,8 +571,7 @@ ExcSavingName.dispose();
                         } catch (IOException q) {
                             throw new RuntimeException("Failed", q);
                         }
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Выберите сохранение", "Error!", JOptionPane.ERROR_MESSAGE);
 
                     }
@@ -609,7 +580,7 @@ ExcSavingName.dispose();
             });
             ///////////////////////////////////////////// PART 2
             OpenList.addActionListener(e12 -> {
-                int SelectedIndex=listOfSaves.getSelectedIndex();
+                int SelectedIndex = listOfSaves.getSelectedIndex();
                 OpenFrame.setVisible(false);
                 newGroup.setSize(600, 400);
                 newGroup.setVisible(true);
@@ -644,11 +615,11 @@ ExcSavingName.dispose();
                 newstudent.add(Box.createVerticalStrut(10));
                 newstudent.add(cancel2, BorderLayout.SOUTH);
 /////////////////////////////////////////////////////////////////////////////////////
-                List<Student> studentList = new ArrayList<>(List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getStudents()) ;
-                DefaultListModel<Student> students = new DefaultListModel<Student>();
-                for(int i=0;i<studentList.size();i++)
+                List<Student> studentList = new ArrayList<>(List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getStudents());
+                DefaultListModel<Student> students = new DefaultListModel<>();
+                for (int i = 0; i < studentList.size(); i++)
                     students.addElement(studentList.get(i));
-                JList<Student> listOfStudent = new JList<Student>(students);
+                JList<Student> listOfStudent = new JList<>(students);
                 JScrollPane jScrollPane1 = new JScrollPane(listOfStudent) {
                     @Override
                     public Dimension getPreferredSize() {
@@ -709,8 +680,7 @@ ExcSavingName.dispose();
                         students.remove(listOfStudent.getSelectedIndex());
                         studentList.remove(listOfStudent.getSelectedIndex());
 
-                    }
-                    else
+                    } else
                         JOptionPane.showMessageDialog(null, "Выберите студента", "Error!", JOptionPane.ERROR_MESSAGE);
 
                 });
@@ -723,11 +693,11 @@ ExcSavingName.dispose();
                     JFrame newgrade = new JFrame("Работа с оценками");
                     newgrade.setSize(500, 500);
                     List<Grade> gradeList = new ArrayList<Grade>(studentList.get(SelectedIndex).getGrades());
-                    DefaultListModel<Grade> grade = new DefaultListModel<Grade>();
+                    DefaultListModel<Grade> grade = new DefaultListModel<>();
                     for (Grade value : gradeList) {
                         grade.addElement(value);
                     }
-                    JList<Grade> listOfGrades = new JList<Grade>(grade);
+                    JList<Grade> listOfGrades = new JList<>(grade);
                     JScrollPane jScrollPane2 = new JScrollPane(listOfGrades) {
                         @Override
                         public Dimension getPreferredSize() {
@@ -757,7 +727,6 @@ ExcSavingName.dispose();
                     buttonspanel2.add(ready, BorderLayout.EAST);
                     buttonspanel2.add(Box.createVerticalStrut(100));
                     int index = listOfStudent.getSelectedIndex();
-                    int count = 0;
                     ready.addActionListener(e116 -> newgrade.dispose());
                     addGrade.addActionListener(e117 -> {
 
@@ -795,36 +764,27 @@ ExcSavingName.dispose();
                         forButtons.add(Box.createHorizontalStrut(20));
                         forButtons.add(cancelGrade);
 
-                        addGrade1.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e117) {
-                                try {
-                                    Integer.parseInt(GradesField.getText());
-                                } catch (NumberFormatException n) {
-                                    JOptionPane.showMessageDialog(null, "Введите число, а не букву", "Error!", JOptionPane.ERROR_MESSAGE);
+                        addGrade1.addActionListener(e11712 -> {
+                            try {
+                                Integer.parseInt(GradesField.getText());
+                            } catch (NumberFormatException n) {
+                                JOptionPane.showMessageDialog(null, "Введите число, а не букву", "Error!", JOptionPane.ERROR_MESSAGE);
 
-                                }
-                                if ((Integer.parseInt(GradesField.getText()) != 1) && (Integer.parseInt(GradesField.getText()) != 2) && (Integer.parseInt(GradesField.getText()) != 3) && (Integer.parseInt(GradesField.getText()) != 4) && (Integer.parseInt(GradesField.getText()) != 5))
-                                    JOptionPane.showMessageDialog(null, "Введите оценку по пятибальной шкале!", "Error!", JOptionPane.ERROR_MESSAGE);
-                                Grade grade1 = new Grade(Integer.parseInt(GradesField.getText()), (Grade.type) typeOfGrade.getSelectedItem());
-                                grade.addElement(grade1);
-                                gradeList.add(grade1);
-                                studentList.get(SelectedIndex).AddGrade(grade1);
-                                Student student = new Student(studentList.get(index).getGroup(), studentList.get(index).getName(), studentList.get(index).getSurname());
-                                student.AddGrade(grade1);
-
-                                updateGrade.dispose();
-                                updateGrade.setVisible(false);
-                                listOfStudent.updateUI();
                             }
+                            if ((Integer.parseInt(GradesField.getText()) != 1) && (Integer.parseInt(GradesField.getText()) != 2) && (Integer.parseInt(GradesField.getText()) != 3) && (Integer.parseInt(GradesField.getText()) != 4) && (Integer.parseInt(GradesField.getText()) != 5))
+                                JOptionPane.showMessageDialog(null, "Введите оценку по пятибальной шкале!", "Error!", JOptionPane.ERROR_MESSAGE);
+                            Grade grade1 = new Grade(Integer.parseInt(GradesField.getText()), (Grade.type) typeOfGrade.getSelectedItem());
+                            grade.addElement(grade1);
+                            gradeList.add(grade1);
+                            studentList.get(SelectedIndex).AddGrade(grade1);
+                            Student student = new Student(studentList.get(index).getGroup(), studentList.get(index).getName(), studentList.get(index).getSurname());
+                            student.AddGrade(grade1);
 
+                            updateGrade.dispose();
+                            updateGrade.setVisible(false);
+                            listOfStudent.updateUI();
                         });
-                        cancelGrade.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e117) {
-                                updateGrade.dispose();
-                            }
-                        });
+                        cancelGrade.addActionListener(e1171 -> updateGrade.dispose());
                     });
                     deleteGrade.addActionListener(e118 -> {
                         if (listOfGrades.getSelectedIndex() != -1) {
@@ -881,60 +841,49 @@ ExcSavingName.dispose();
                             forTable.add(jScrollPane3);
                             save.setDefaultCloseOperation(EXIT_ON_CLOSE);
                             /////////////////////////////////////////////////////////////////////////////////////////////////
-                            Saving.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e119) {
-                                    JFrame SavingName = new JFrame("Введите название");
-                                    SavingName.setSize(300, 300);
-                                    SavingName.setVisible(true);
-                                    JLabel SaveName = new JLabel("Введите название");
-                                    JPanel ForName = new JPanel();
-                                    JPanel ForButtonSave = new JPanel();
-                                    JTextField Forsave = new JTextField();
-                                    JButton CommitSave = new JButton("Готово");
-                                    JButton CancelSave = new JButton("Отмена");
-                                    ForButtonSave.setLayout(new BoxLayout(ForButtonSave, BoxLayout.X_AXIS));
-                                    ForName.setLayout(new BoxLayout(ForName, BoxLayout.Y_AXIS));
-                                    ForButtonSave.add(Box.createHorizontalStrut(30));
-                                    ForButtonSave.add(CommitSave);
-                                    ForButtonSave.add(Box.createHorizontalStrut(20));
-                                    ForButtonSave.add(CancelSave);
-                                    SaveName.setFont(new Font("Verdana", Font.PLAIN, 20));
-                                    SavingName.add(ForName, BorderLayout.CENTER);
-                                    ForName.add(Box.createVerticalStrut(50));
-                                    ForName.add(SaveName);
-                                    ForName.add(Box.createVerticalStrut(30));
-                                    ForName.add(Forsave);
-                                    ForName.add(Box.createVerticalStrut(100));
-                                    SavingName.add(ForButtonSave, BorderLayout.SOUTH);
-                                    SavingName.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                                    CancelSave.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e119) {
-                                            SavingName.dispose();
-                                        }
-                                    });
-                                    CommitSave.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e119) {
-                                            Group saveGroup = new Group(List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getGroup());
-                                            for (Student student : studentList) saveGroup.add(student);
-                                            Discipline SavingDiscipline = new Discipline(List_for_Save.get(SelectedIndex).getDiscipline().getTeacherName(), List_for_Save.get(SelectedIndex).getDiscipline().getTeacherSurname(), List_for_Save.get(SelectedIndex).getDiscipline().getDiscipline(), saveGroup);
-                                            For_Save object = new For_Save(Forsave.getText(), SavingDiscipline);
-                                            List_for_Save.add(object);
-                                            try {
-                                                ObjectSave.save(List_for_Save);
-                                            } catch (FileNotFoundException d) {
-                                                JOptionPane.showMessageDialog(null, "File not found!", "Error!", JOptionPane.ERROR_MESSAGE);
-                                            } catch (IOException d) {
-                                                JOptionPane.showMessageDialog(null, "Такой файл существует!", "Error!", JOptionPane.ERROR_MESSAGE);
+                            Saving.addActionListener(e11915 -> {
+                                JFrame SavingName = new JFrame("Введите название");
+                                SavingName.setSize(300, 300);
+                                SavingName.setVisible(true);
+                                JLabel SaveName = new JLabel("Введите название");
+                                JPanel ForName = new JPanel();
+                                JPanel ForButtonSave = new JPanel();
+                                JTextField Forsave = new JTextField();
+                                JButton CommitSave = new JButton("Готово");
+                                JButton CancelSave = new JButton("Отмена");
+                                ForButtonSave.setLayout(new BoxLayout(ForButtonSave, BoxLayout.X_AXIS));
+                                ForName.setLayout(new BoxLayout(ForName, BoxLayout.Y_AXIS));
+                                ForButtonSave.add(Box.createHorizontalStrut(30));
+                                ForButtonSave.add(CommitSave);
+                                ForButtonSave.add(Box.createHorizontalStrut(20));
+                                ForButtonSave.add(CancelSave);
+                                SaveName.setFont(new Font("Verdana", Font.PLAIN, 20));
+                                SavingName.add(ForName, BorderLayout.CENTER);
+                                ForName.add(Box.createVerticalStrut(50));
+                                ForName.add(SaveName);
+                                ForName.add(Box.createVerticalStrut(30));
+                                ForName.add(Forsave);
+                                ForName.add(Box.createVerticalStrut(100));
+                                SavingName.add(ForButtonSave, BorderLayout.SOUTH);
+                                SavingName.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                                CancelSave.addActionListener(e11912 -> SavingName.dispose());
+                                CommitSave.addActionListener(e1191 -> {
+                                    Group saveGroup = new Group(List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getGroup());
+                                    for (Student student : studentList) saveGroup.add(student);
+                                    Discipline SavingDiscipline = new Discipline(List_for_Save.get(SelectedIndex).getDiscipline().getTeacherName(), List_for_Save.get(SelectedIndex).getDiscipline().getTeacherSurname(), List_for_Save.get(SelectedIndex).getDiscipline().getDiscipline(), saveGroup);
+                                    For_Save object = new For_Save(Forsave.getText(), SavingDiscipline);
+                                    List_for_Save.add(object);
+                                    try {
+                                        ObjectSave.save(List_for_Save);
+                                    } catch (FileNotFoundException d) {
+                                        JOptionPane.showMessageDialog(null, "File not found!", "Error!", JOptionPane.ERROR_MESSAGE);
+                                    } catch (IOException d) {
+                                        JOptionPane.showMessageDialog(null, "Такой файл существует!", "Error!", JOptionPane.ERROR_MESSAGE);
 
-                                            }
-                                            SavingName.dispose();
-                                        }
-                                    });
+                                    }
+                                    SavingName.dispose();
+                                });
 
-                                }
                             });
                             excel.addActionListener(new ActionListener() {
                                 @Override
@@ -963,19 +912,13 @@ ExcSavingName.dispose();
                                     ExcForName.add(Box.createVerticalStrut(100));
                                     ExcSavingName.add(ExcForButtonSave, BorderLayout.SOUTH);
                                     ExcSavingName.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                                    ExcCancelSave.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e119) {
-                                            ExcSavingName.dispose();
-                                        }
-                                    });
+                                    ExcCancelSave.addActionListener(e11913 -> ExcSavingName.dispose());
                                     ExcCommitSave.addActionListener(new ActionListener() {
                                         @Override
                                         public void actionPerformed(ActionEvent e119) {
                                             try {
-                                                ExportExcel(table,ExcForsave.getText());
-                                            }
-                                            catch(IOException d){
+                                                ExportExcel(table, ExcForsave.getText());
+                                            } catch (IOException d) {
                                                 throw new RuntimeException("Exception");
                                             }
                                             ExcSavingName.dispose();
@@ -984,12 +927,9 @@ ExcSavingName.dispose();
 
                                 }
                             });
-                            Back1.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e119) {
-                                    newGroup.setVisible(true);
-                                    save.setVisible(false);
-                                }
+                            Back1.addActionListener(e11914 -> {
+                                newGroup.setVisible(true);
+                                save.setVisible(false);
                             });
 
                         }
@@ -1000,22 +940,22 @@ ExcSavingName.dispose();
     }
 
     private void ExportExcel(JTable table, String name) throws IOException {
-        File file=new File("C:\\Users\\Alex\\"+name+".xls");
+        File file = new File("C:\\Users\\Alex\\" + name + ".xls");
         TableModel model = table.getModel();
-       try(
-            OutputStreamWriter out=new OutputStreamWriter(new FileOutputStream(file,true), StandardCharsets.UTF_8);
-       ) {
-           for (int i = 0; i < model.getColumnCount(); i++) {
-               out.write(model.getColumnName(i) + "\t");
-           }
-           out.write("\n");
-           for (int i = 0; i < model.getRowCount(); i++) {
-               for (int j = 0; j < model.getColumnCount(); j++) {
-                   out.write(model.getValueAt(i, j) + "\t");
-               }
-               out.write("\n");
-           }
+        try (
+                OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8);
+        ) {
+            for (int i = 0; i < model.getColumnCount(); i++) {
+                out.write(model.getColumnName(i) + "\t");
+            }
+            out.write("\n");
+            for (int i = 0; i < model.getRowCount(); i++) {
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    out.write(model.getValueAt(i, j) + "\t");
+                }
+                out.write("\n");
+            }
 
-       }
+        }
     }
 }
