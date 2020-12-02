@@ -16,8 +16,8 @@ public class Grade implements Serializable {
     @Override
     public String toString() {
         return "" +
-                "Оценка=" + grade +
-                ' '+ "Тип: "+Type;
+                "Grade=" + grade +
+                ' '+ "Type: "+Type;
     }
 
     public int getGrade() {
