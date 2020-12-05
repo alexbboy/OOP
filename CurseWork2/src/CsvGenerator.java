@@ -13,9 +13,8 @@ public class CsvGenerator {
     }
 
     public static void generateCsvFile(TableModel model, String fileName, CsvSeparator separator) throws IOException {
-        fileName=fileName+".xls";
+        fileName=fileName+".csv";
         Path path = Paths.get(fileName);
-
         try (BufferedWriter writer = Files.newBufferedWriter(path,
                 StandardOpenOption.CREATE,
                 StandardOpenOption.TRUNCATE_EXISTING,
