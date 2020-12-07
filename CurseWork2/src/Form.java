@@ -8,52 +8,48 @@ import java.util.List;
 public class Form extends JFrame {
     private final JTable table = new JTable();
     private List<ReportData> List_for_Save = new ArrayList<>();
-    private final JFrame NewGroup = new JFrame("Создание группы");
-    private final JFrame ExcelFrame = new JFrame("Введите название");
-    private final JFrame ForSaveReport = new JFrame("Введите название");
-    private final JTextField DisciplineName = new JTextField();
-    private final JTextField TeachersName = new JTextField();
-    private final JTextField TeachersSurname = new JTextField();
-    private final JTextField StudentGroup = new JTextField();
+    private final JFrame newGroup = new JFrame("Создание группы");
+    private final JFrame excelFrame = new JFrame("Введите название");
+    private final JFrame forSaveReport = new JFrame("Введите название");
+    private final JTextField disciplineName = new JTextField();
+    private final JTextField teachersName = new JTextField();
+    private final JTextField teachersSurname = new JTextField();
+    private final JTextField studentGroup = new JTextField();
     private final Font font=new Font("Verdana", Font.PLAIN, 20);
-    private final JButton NextToModidy = new JButton("Далее");
-    private final JButton BackToStart = new JButton("Назад");
-    private final JTextField ExcelName = new JTextField();
-    private final JTextField NameOfSave = new JTextField();
-    private final JButton ConfirmSave = new JButton("Готово");
-    private final  JButton CancelSave = new JButton("Отмена");
-    private final JButton SaveExcel = new JButton("Готово");
-    private final JButton BackToTable = new JButton("Отмена");
-    private final JTextField NewStudentName = new JTextField();
-    private final JTextField NewStudentSurname = new JTextField();
-    private final JTextField GradesField = new JTextField();
-    private final JTextField GradesFieldFromSave = new JTextField();
+    private final JButton nextToModidy = new JButton("Далее");
+    private final JButton backToStart = new JButton("Назад");
+    private final JTextField excelName = new JTextField();
+    private final JTextField nameOfSave = new JTextField();
+    private final JButton confirmSave = new JButton("Готово");
+    private final  JButton cancelSave = new JButton("Отмена");
+    private final JButton saveExcel = new JButton("Готово");
+    private final JButton backToTable = new JButton("Отмена");
+    private final JTextField newStudentName = new JTextField();
+    private final JTextField newStudentSurname = new JTextField();
+    private final JTextField gradesField = new JTextField();
+    private final JTextField gradesFieldFromSave = new JTextField();
     private final JComboBox<Grade.type> typeOfGrade = new JComboBox<>();
-    private final JButton AddStudent = new JButton("Добавить студента");
-    private final JButton DeleteStudent = new JButton("Удалить студента");
-    private final JButton GradesOfStudent = new JButton("Редактировать оценки");
-    private final JButton NextToSave = new JButton("Далее");
-    private final JButton BackToDisciplineCreation = new JButton("Назад");
+    private final JButton addStudent = new JButton("Добавить студента");
+    private final JButton deleteStudent = new JButton("Удалить студента");
+    private final JButton gradesOfStudent = new JButton("Редактировать оценки");
+    private final JButton nextToSave = new JButton("Далее");
+    private final JButton backToDisciplineCreation = new JButton("Назад");
     private final JPanel forListOfStudent = new JPanel();
-    private final JButton ReadyGrade = new JButton("Готово");
+    private final JButton readyGrade = new JButton("Готово");
     private final DefaultTableModel defaultTableModel = new DefaultTableModel();
-    private final JButton SaveReport = new JButton("Сохранить");
-    private final JButton ToExcel = new JButton("Excel");
-    private final JButton BackToReport = new JButton("Назад");
-    private final JButton OpenListSaves = new JButton("Открыть");
-    private final JButton DeleteSave = new JButton("Удалить Ведомость");
-    private final JButton OpenFromSave = new JButton("Добавить студента");
-    private final JButton DeleteStudentFromSave = new JButton("Удалить студента");
-    private final JButton NextToTableFromSave = new JButton("Далее");
-    private final JButton BackToSaves = new JButton("Назад");
-    private final JTextField OpenSaves_NameOfStudent = new JTextField();
-    private final JTextField OpenSaves_SurnameOfStudent = new JTextField();
-    private final JButton OpenSaves_ready = new JButton("Готово");
-    private final JButton GradesFromSave=new JButton("Редактировать оценки");
+    private final JButton saveReport = new JButton("Сохранить");
+    private final JButton toExcel = new JButton("Excel");
+    private final JButton backToReport = new JButton("Назад");
+    private final JButton openListSaves = new JButton("Открыть");
+    private final JButton deleteSave = new JButton("Удалить Ведомость");
+    private final JTextField openSaves_NameOfStudent = new JTextField();
+    private final JTextField openSaves_SurnameOfStudent = new JTextField();
+    private final JButton openSaves_ready = new JButton("Готово");
     private final JComboBox<Grade.type> typeOfGrade_Saves = new JComboBox<>();
-    private final JButton SaveFromSave = new JButton("Сохранить");
-    private final JButton ToExcelFromSave = new JButton("Excel");
-    private final JButton BackToStudents = new JButton("Назад");
+    private final JButton saveFromSave = new JButton("Сохранить");
+    private final JButton toExcelFromSave = new JButton("Excel");
+    private final JButton backToStudents = new JButton("Назад");
+    private final JButton exit=new JButton("Выйти");
     ///////////////////////////////////////////
     Form(String filename) {
         setTitle("Ведомость");
@@ -105,18 +101,18 @@ public class Form extends JFrame {
 //////////////////////////////////////////////////////////////////////////////
         create.addActionListener(e -> {
             JFrame newDiscipline = new JFrame("Создание дисциплины");
-Create_Process(newDiscipline);
-            BackToStart.addActionListener(e15 -> newDiscipline.dispose());
-            NextToModidy.addActionListener(e1 -> {
+сreate_Process(newDiscipline);
+            backToStart.addActionListener(e15 -> newDiscipline.dispose());
+            nextToModidy.addActionListener(e1 -> {
                 try {
-                    Double.parseDouble(StudentGroup.getText());
+                    Double.parseDouble(studentGroup.getText());
                 } catch (NumberFormatException n) {
                     JOptionPane.showMessageDialog(null, "Введите число в строку группы!",
                             "Error!",
                             JOptionPane.ERROR_MESSAGE);
 
                 }
-                MainReport(newDiscipline);
+                mainReport(newDiscipline);
 /////////////////////////////////////////////////////////////////////////////////////
                 List<Student> studentList = new ArrayList<>();
                 DefaultListModel<Student> StudentModel = new DefaultListModel<>();
@@ -132,17 +128,17 @@ Create_Process(newDiscipline);
                 forListOfStudent.add(jScrollPane, BorderLayout.SOUTH);
 /////////////////////////////////////////////////////////////////////////////////////////////
                 //////////////////////////////////////////////
-                BackToDisciplineCreation.addActionListener(e1111 -> {
-                    NewGroup.setVisible(false);
+                backToDisciplineCreation.addActionListener(e1111 -> {
+                    newGroup.setVisible(false);
                     newDiscipline.setVisible(true);
                 });
-                AddStudent.addActionListener(e114 -> {
+                addStudent.addActionListener(e114 -> {
                     JButton ConfirmNewStudent = new JButton("Добавить");
                     JButton BackToStudentList = new JButton("Отмена");
                     JFrame AddNewStudent = new JFrame("Добавление студента");
-                    AddStudent_Process(AddNewStudent,ConfirmNewStudent,BackToStudentList);
+                    addStudent_Process(AddNewStudent,ConfirmNewStudent,BackToStudentList);
                     ConfirmNewStudent.addActionListener(e1141 -> {
-                        Student NewStudent = new Student(Integer.parseInt(StudentGroup.getText()), NewStudentName.getText(), NewStudentSurname.getText());
+                        Student NewStudent = new Student(Integer.parseInt(studentGroup.getText()), newStudentName.getText(), newStudentSurname.getText());
                         StudentModel.addElement(NewStudent);
                         studentList.add(NewStudent);
                         AddNewStudent.dispose();
@@ -150,14 +146,14 @@ Create_Process(newDiscipline);
                     });
                     BackToStudentList.addActionListener(e11412 -> AddNewStudent.dispose());
                 });
-                DeleteStudent.addActionListener(e1110 -> {
+                deleteStudent.addActionListener(e1110 -> {
                     if (jlistOfStudent.getSelectedIndex() != -1) {
                         int SelectedIndex=jlistOfStudent.getSelectedIndex();
                         StudentModel.remove(SelectedIndex);
                         studentList.remove(SelectedIndex);
                     }
                 });
-                GradesOfStudent.addActionListener(e113 -> {
+                gradesOfStudent.addActionListener(e113 -> {
                     if (jlistOfStudent.getSelectedIndex() == -1) {
                         JOptionPane.showMessageDialog(null, "Выберите студента", "Error!", JOptionPane.ERROR_MESSAGE);
                         return;
@@ -179,24 +175,24 @@ Create_Process(newDiscipline);
                     JPanel listPanel=new JPanel();
                     JButton AddGrade = new JButton("Добавить оценку");
                     JButton DeleteGrade = new JButton("Удалить оценку");
-                    NewGrades_Process(NewGrades,listPanel,jScrollPane2,AddGrade,DeleteGrade);
+                    newGrades_Process(NewGrades,listPanel,jScrollPane2,AddGrade,DeleteGrade);
                     int index = jlistOfStudent.getSelectedIndex();
-                    ReadyGrade.addActionListener(e11316 -> NewGrades.dispose());
+                    readyGrade.addActionListener(e11316 -> NewGrades.dispose());
                     AddGrade.addActionListener(e1131 -> {
                         listOfGrades.updateUI();
                         JFrame NewGrade = new JFrame("Новая оценка");
                         JButton ConfirmGrade = new JButton("Добавить");
                         JButton cancelGrade = new JButton("Отмена");
-                        AddGrade_Process(NewGrade,ConfirmGrade,cancelGrade);
+                        addGrade_Process(NewGrade,ConfirmGrade,cancelGrade);
                         ConfirmGrade.addActionListener(e113112 -> {
                             try {
-                                Integer.parseInt(GradesField.getText());
+                                Integer.parseInt(gradesField.getText());
                             } catch (NumberFormatException n) {
                                 JOptionPane.showMessageDialog(null, "Введите число, а не букву", "Error!", JOptionPane.ERROR_MESSAGE);
                             }
-                            if ((Integer.parseInt(GradesField.getText()) != 1) && (Integer.parseInt(GradesField.getText()) != 2) && (Integer.parseInt(GradesField.getText()) != 3) && (Integer.parseInt(GradesField.getText()) != 4) && (Integer.parseInt(GradesField.getText()) != 5))
+                            if ((Integer.parseInt(gradesField.getText()) != 1) && (Integer.parseInt(gradesField.getText()) != 2) && (Integer.parseInt(gradesField.getText()) != 3) && (Integer.parseInt(gradesField.getText()) != 4) && (Integer.parseInt(gradesField.getText()) != 5))
                                 JOptionPane.showMessageDialog(null, "Введите оценку по пятибальной шкале!", "Error!", JOptionPane.ERROR_MESSAGE);
-                            Grade GradeToAdd = new Grade(Integer.parseInt(GradesField.getText()), (Grade.type) typeOfGrade.getSelectedItem());
+                            Grade GradeToAdd = new Grade(Integer.parseInt(gradesField.getText()), (Grade.type) typeOfGrade.getSelectedItem());
                             GradeListModel.addElement(GradeToAdd);
                             GradeList.add(GradeToAdd);
                             studentList.get(jlistOfStudent.getSelectedIndex()).AddGrade(GradeToAdd);
@@ -205,7 +201,7 @@ Create_Process(newDiscipline);
                             NewGrade.dispose();
                             NewGrade.setVisible(false);
                             jlistOfStudent.updateUI();
-                            GradesField.setText(null);
+                            gradesField.setText(null);
                         });
                         cancelGrade.addActionListener(e11311 -> NewGrade.dispose());
                     });
@@ -220,21 +216,21 @@ Create_Process(newDiscipline);
                         }
                     });
               });
-                NextToSave.addActionListener(e11318 -> {
+                nextToSave.addActionListener(e11318 -> {
                     if (studentList.size() == 0)
                         JOptionPane.showMessageDialog(null, "Ведомость пустая!", "Error!", JOptionPane.ERROR_MESSAGE);
                     else {
                         JFrame save = new JFrame("Просмотр и сохранение ведомости");
-                        NewGroup.setVisible(false);
-                        NextToSave_Process(save,StudentModel);
-                     SaveReport.addActionListener(e113181 -> {
-                            SaveReport_Process();
-                            CancelSave.addActionListener(e11312 -> ForSaveReport.dispose());
-                            ConfirmSave.addActionListener(e11313 -> {
-                                Group saveGroup = new Group(Integer.parseInt(StudentGroup.getText()));
+                        newGroup.setVisible(false);
+                        nextToSave_Process(save,StudentModel);
+                     saveReport.addActionListener(e113181 -> {
+                            saveReport_Process();
+                            cancelSave.addActionListener(e11312 -> forSaveReport.dispose());
+                            confirmSave.addActionListener(e11313 -> {
+                                Group saveGroup = new Group(Integer.parseInt(studentGroup.getText()));
                                 for (Student student : studentList) saveGroup.add(student);
-                                Discipline SavingDiscipline = new Discipline(TeachersName.getText(), TeachersSurname.getText(), DisciplineName.getText(), saveGroup);
-                                ReportData object = new ReportData(NameOfSave.getText(), SavingDiscipline);
+                                Discipline SavingDiscipline = new Discipline(teachersName.getText(), teachersSurname.getText(), disciplineName.getText(), saveGroup);
+                                ReportData object = new ReportData(nameOfSave.getText(), SavingDiscipline);
                                 List_for_Save.add(object);
                                 try {
                                     ObjectForSave.save(List_for_Save);
@@ -244,25 +240,26 @@ Create_Process(newDiscipline);
                                     JOptionPane.showMessageDialog(null, "Такой файл существует!", "Error!", JOptionPane.ERROR_MESSAGE);
 
                                 }
-                                ForSaveReport.dispose();
+                                forSaveReport.dispose();
                             });
                         });
-                        ToExcel.addActionListener(e11314 -> {
-                            Excel_Process();
-                            BackToTable.addActionListener(e113141 -> ExcelFrame.dispose());
-                            SaveExcel.addActionListener(e112 -> {
+                        toExcel.addActionListener(e11314 -> {
+                            excel_Process();
+                            backToTable.addActionListener(e113141 -> excelFrame.dispose());
+                            saveExcel.addActionListener(e112 -> {
                                 try {
-                                    CsvGenerator.generateCsvFile(table.getModel(),ExcelName.getText());
+                                    CsvGenerator.generateCsvFile(table.getModel(), excelName.getText());
                                 } catch (IOException d) {
                                    IOError();
                                 }
-                                ExcelFrame.dispose();
+                                excelFrame.dispose();
                             });
                         });
-                        BackToReport.addActionListener(e11315 -> {
-                            NewGroup.setVisible(true);
+                        backToReport.addActionListener(e11315 -> {
+                            newGroup.setVisible(true);
                             save.setVisible(false);
                         });
+                        exit.addActionListener(e2 -> System.exit(0));
                     }
                 });
             });
@@ -279,7 +276,7 @@ Create_Process(newDiscipline);
             }
             JFrame LoadFrame = new JFrame("Загрузка ведомости");
             JButton BackToStart = new JButton("Назад");
-Open_Process(LoadFrame,BackToStart);
+open_Process(LoadFrame,BackToStart);
             DefaultListModel<ReportData> titles = new DefaultListModel<>();
             JList<ReportData> listOfSaves = new JList<>(titles);
             for (ReportData for_save : List_for_Save) titles.addElement(for_save);
@@ -294,7 +291,7 @@ Open_Process(LoadFrame,BackToStart);
             ForList.add(jScrollPane, BorderLayout.SOUTH);
             LoadFrame.add(ForList, BorderLayout.CENTER);
             BackToStart.addActionListener(e13 -> LoadFrame.dispose());
-            DeleteSave.addActionListener(e14 -> {
+            deleteSave.addActionListener(e14 -> {
                 int SelectedIndex = listOfSaves.getSelectedIndex();
                 if (SelectedIndex != -1) {
                     List_for_Save.remove(SelectedIndex);
@@ -311,17 +308,22 @@ Open_Process(LoadFrame,BackToStart);
 
                 }
             });
-            OpenListSaves.addActionListener(e12 -> {
+            openListSaves.addActionListener(e12 -> {
                 int SelectedIndex = listOfSaves.getSelectedIndex();
                 LoadFrame.setVisible(false);
-                NewGroup.setSize(600, 400);
-                NewGroup.setVisible(true);
+                newGroup.setSize(600, 400);
+                newGroup.setVisible(true);
                 JLabel GroupLabel = new JLabel("Группа: " + List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getGroup());
                 JLabel DisciplineLabel = new JLabel("Дисциплина: " + List_for_Save.get(SelectedIndex).getDiscipline().getDiscipline());
                 JLabel NameLabel = new JLabel("Преподователь: " + List_for_Save.get(SelectedIndex).getDiscipline().getTeacherName() + " " + List_for_Save.get(listOfSaves.getSelectedIndex()).getDiscipline().getTeacherSurname());
                 JPanel forList = new JPanel();
-                NewGroup.add(forList, BorderLayout.CENTER);
-                AddStudentFromSaves_Process(GroupLabel,DisciplineLabel,NameLabel);
+                JButton openFromSave = new JButton("Добавить студента");
+                JButton deleteStudentFromSave = new JButton("Удалить студента");
+                JButton nextToTableFromSave = new JButton("Далее");
+                JButton backToSaves = new JButton("Назад");
+                JButton gradesFromSave =new JButton("Редактировать оценки");
+                newGroup.add(forList, BorderLayout.CENTER);
+                addStudentFromSaves_Process(GroupLabel,DisciplineLabel,NameLabel,openFromSave,deleteStudentFromSave,nextToTableFromSave,backToSaves,gradesFromSave);
                 List<Student> studentList = new ArrayList<>(List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getStudents());
                 DefaultListModel<Student> StudentListModel = new DefaultListModel<>();
                 for (Student item : studentList) StudentListModel.addElement(item);
@@ -335,19 +337,19 @@ Open_Process(LoadFrame,BackToStart);
                 jScrollPane1.setAlignmentY(JScrollPane.TOP_ALIGNMENT);
                 forList.add(Box.createVerticalStrut(30));
                 forList.add(jScrollPane1, BorderLayout.SOUTH);
-                BackToSaves.addActionListener(e1 -> {
-                    NewGroup.setVisible(false);
+                backToSaves.addActionListener(e1 -> {
+                    newGroup.setVisible(false);
                     LoadFrame.setVisible(true);
                 });
-                OpenFromSave.addActionListener(e1 -> {
+                openFromSave.addActionListener(e1 -> {
                     JFrame newstudent1 = new JFrame("Добавление студента");
-                    OpenSaves_NameOfStudent.setText(null);
-                    OpenSaves_SurnameOfStudent.setText(null);
+                    openSaves_NameOfStudent.setText(null);
+                    openSaves_SurnameOfStudent.setText(null);
                     JButton OpenSaves_ConfirmNewStudent = new JButton("Добавить");
                     JButton OpenSaves_BackToStudentsList = new JButton("Отмена");
-                    OpenSavesAddNewStudent_Process(newstudent1,OpenSaves_ConfirmNewStudent,OpenSaves_BackToStudentsList);
+                    openSavesAddNewStudent_Process(newstudent1,OpenSaves_ConfirmNewStudent,OpenSaves_BackToStudentsList);
                     OpenSaves_ConfirmNewStudent.addActionListener(e11 -> {
-                        Student student = new Student((List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getGroup()), OpenSaves_NameOfStudent.getText(), OpenSaves_SurnameOfStudent.getText());
+                        Student student = new Student((List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getGroup()), openSaves_NameOfStudent.getText(), openSaves_SurnameOfStudent.getText());
                         StudentListModel.addElement(student);
                         studentList.add(student);
                         newstudent1.dispose();
@@ -355,7 +357,7 @@ Open_Process(LoadFrame,BackToStart);
                     });
                     OpenSaves_BackToStudentsList.addActionListener(e115 -> newstudent1.dispose());
                 });
-                DeleteStudentFromSave.addActionListener(e1 -> {
+                deleteStudentFromSave.addActionListener(e1 -> {
                     if (SelectedIndex != -1) {
                         int index=listOfStudent.getSelectedIndex();
                         StudentListModel.remove(index);
@@ -363,7 +365,7 @@ Open_Process(LoadFrame,BackToStart);
                     } else
                         JOptionPane.showMessageDialog(null, "Выберите студента", "Error!", JOptionPane.ERROR_MESSAGE);
                 });
-                GradesFromSave.addActionListener(e1 -> {
+                gradesFromSave.addActionListener(e1 -> {
                     if (listOfStudent.getSelectedIndex() == -1) {
                         JOptionPane.showMessageDialog(null, "Выберите студента", "Error!", JOptionPane.ERROR_MESSAGE);
                         return;
@@ -387,26 +389,26 @@ Open_Process(LoadFrame,BackToStart);
                     Gradelistpanel.add(jScrollPane2, BorderLayout.CENTER);
                      JButton OpenSaves_addGrade = new JButton("Добавить оценку");
                      JButton OpenSaves_deleteGrade = new JButton("Удалить оценку");
-                    GradeFromSaves_Process(NewGrade,Gradelistpanel,OpenSaves_addGrade,OpenSaves_deleteGrade);
+                    gradeFromSaves_Process(NewGrade,Gradelistpanel,OpenSaves_addGrade,OpenSaves_deleteGrade);
                     int index = listOfStudent.getSelectedIndex();
-                    OpenSaves_ready.addActionListener(e116 -> {NewGrade.dispose(); listOfGrades.updateUI();});
+                    openSaves_ready.addActionListener(e116 -> {NewGrade.dispose(); listOfGrades.updateUI();});
                     OpenSaves_addGrade.addActionListener(e117 -> {
                         listOfGrades.updateUI();
                         JFrame UpdateGrades = new JFrame("Новая оценка");
                         UpdateGrades.setVisible(true);
                         JButton OpenSavesaddGrade1 = new JButton("Добавить");
                         JButton OpenSavesBackToGradeList = new JButton("Отмена");
-                        AddGrade_Process2(UpdateGrades,OpenSavesaddGrade1,OpenSavesBackToGradeList);
+                        addGrade_Process2(UpdateGrades,OpenSavesaddGrade1,OpenSavesBackToGradeList);
                         OpenSavesaddGrade1.addActionListener(e11712 -> {
                             try {
-                                Integer.parseInt(GradesFieldFromSave.getText());
+                                Integer.parseInt(gradesFieldFromSave.getText());
                             } catch (NumberFormatException n) {
                                 JOptionPane.showMessageDialog(null, "Введите число, а не букву", "Error!", JOptionPane.ERROR_MESSAGE);
 
                             }
-                            if ((Integer.parseInt(GradesFieldFromSave.getText()) != 1) && (Integer.parseInt(GradesFieldFromSave.getText()) != 2) && (Integer.parseInt(GradesFieldFromSave.getText()) != 3) && (Integer.parseInt(GradesFieldFromSave.getText()) != 4) && (Integer.parseInt(GradesFieldFromSave.getText()) != 5))
+                            if ((Integer.parseInt(gradesFieldFromSave.getText()) != 1) && (Integer.parseInt(gradesFieldFromSave.getText()) != 2) && (Integer.parseInt(gradesFieldFromSave.getText()) != 3) && (Integer.parseInt(gradesFieldFromSave.getText()) != 4) && (Integer.parseInt(gradesFieldFromSave.getText()) != 5))
                                 JOptionPane.showMessageDialog(null, "Введите оценку по пятибальной шкале!", "Error!", JOptionPane.ERROR_MESSAGE);
-                            Grade GradeToAdd = new Grade(Integer.parseInt(GradesFieldFromSave.getText()), (Grade.type) typeOfGrade_Saves.getSelectedItem());
+                            Grade GradeToAdd = new Grade(Integer.parseInt(gradesFieldFromSave.getText()), (Grade.type) typeOfGrade_Saves.getSelectedItem());
                             GradeListModel.addElement(GradeToAdd);
                             gradeList.add(GradeToAdd);
                             studentList.get(SelectedIndex2).AddGrade(GradeToAdd);
@@ -414,7 +416,7 @@ Open_Process(LoadFrame,BackToStart);
                             student.AddGrade(GradeToAdd);
                             UpdateGrades.dispose();
                             listOfStudent.updateUI();
-                            GradesFieldFromSave.setText(null);
+                            gradesFieldFromSave.setText(null);
                         });
                         OpenSavesBackToGradeList.addActionListener(e1171 -> UpdateGrades.dispose());
                     });
@@ -430,20 +432,20 @@ Open_Process(LoadFrame,BackToStart);
                     });
                     //////////////////////////////////////////////////////////////////////////////////
                 });
-                NextToTableFromSave.addActionListener(e119 -> {
+                nextToTableFromSave.addActionListener(e119 -> {
                     if (studentList.size() == 0)
                         JOptionPane.showMessageDialog(null, "Ведомость пустая!", "Error!", JOptionPane.ERROR_MESSAGE);
                     else {
                         JFrame save = new JFrame("Просмотр и сохранение ведомости");
-                        NewGroup.setVisible(false);
-                        OpenSavesNextToSave_Process(save,StudentListModel);
+                        newGroup.setVisible(false);
+                        openSavesNextToSave_Process(save,StudentListModel);
                         /////////////////////////////////////////////////////////////////////////////////////////////////
-                        SaveFromSave.addActionListener(e11915 -> {
+                        saveFromSave.addActionListener(e11915 -> {
                             JFrame SavingName = new JFrame("Введите название");
                             JTextField Forsave2 = new JTextField();
                             JButton CommitSave2 = new JButton("Готово");
                             JButton CancelSave2 = new JButton("Отмена");
-                            SaveFromSave_Process(SavingName,CommitSave2,CancelSave2,Forsave2);
+                            saveFromSave_Process(SavingName,CommitSave2,CancelSave2,Forsave2);
                             CancelSave2.addActionListener(e11912 -> SavingName.dispose());
                             CommitSave2.addActionListener(e1191 -> {
                                 Group saveGroup = new Group(List_for_Save.get(SelectedIndex).getDiscipline().getGroups().getGroup());
@@ -454,7 +456,7 @@ Open_Process(LoadFrame,BackToStart);
                                 try {
                                     ObjectForSave.save(List_for_Save);
                                 } catch (FileNotFoundException d) {
-                                    JOptionPane.showMessageDialog(null, "File not found!", "Error!", JOptionPane.ERROR_MESSAGE);
+                                    fileNotFoundError();
                                 } catch (IOException d) {
                                     IOError();
                                 }
@@ -462,19 +464,24 @@ Open_Process(LoadFrame,BackToStart);
                             });
 
                         });
-                        ToExcelFromSave.addActionListener(e11916 -> {
-                            Excel_Process();
-                            BackToTable.addActionListener(e11913 -> ExcelFrame.dispose());
-                            SaveExcel.addActionListener(e119161 -> {
+                        toExcelFromSave.addActionListener(e11916 -> {
+                            excel_Process();
+                            backToTable.addActionListener(e11913 -> excelFrame.dispose());
+                            saveExcel.addActionListener(e119161 -> {
                                 try {
-                                    CsvGenerator.generateCsvFile(table.getModel(),ExcelName.getText());
+                                    CsvGenerator.generateCsvFile(table.getModel(), excelName.getText());
                                 } catch (IOException d) {
                                  IOError();
                                 }
-                                ExcelFrame.dispose();
+                                excelFrame.dispose();
                             });
 
                         });
+                       backToStudents.addActionListener(e16 -> {
+                           newGroup.setVisible(true);
+                           save.setVisible(false);
+                       });
+exit.addActionListener(e17 -> System.exit(0));
                     }
                 });
             });
@@ -483,7 +490,7 @@ Open_Process(LoadFrame,BackToStart);
 
 
     //////////////////////////////////////////////METHODS
-private void Create_Process(JFrame newDiscipline){
+private void сreate_Process(JFrame newDiscipline){
     newDiscipline.setSize(600, 400);
     newDiscipline.setVisible(true);
     JPanel Content = new JPanel(new BorderLayout(10, 10));
@@ -498,26 +505,26 @@ private void Create_Process(JFrame newDiscipline){
     JLabel group = new JLabel("Введите группу");
     group.setFont(font);
     JPanel buttonspanel = new JPanel();
-    DisciplineName.setSize(100, 50);
+    disciplineName.setSize(100, 50);
     Content.add(Box.createVerticalStrut(20));
     Content.add(discipline, BorderLayout.WEST);
-    Content.add(DisciplineName, BorderLayout.CENTER);
+    Content.add(disciplineName, BorderLayout.CENTER);
     Content.add(Box.createVerticalStrut(20));
     Content.add(group, BorderLayout.WEST);
-    Content.add(StudentGroup, BorderLayout.CENTER);
+    Content.add(studentGroup, BorderLayout.CENTER);
     Content.add(Box.createVerticalStrut(20));
     Content.add(TeacherName, BorderLayout.WEST);
-    Content.add(TeachersName, BorderLayout.CENTER);
+    Content.add(teachersName, BorderLayout.CENTER);
     Content.add(Box.createVerticalStrut(20));
     Content.add(TeacherSurname, BorderLayout.WEST);
-    Content.add(TeachersSurname, BorderLayout.CENTER);
+    Content.add(teachersSurname, BorderLayout.CENTER);
     Content.add(Box.createVerticalStrut(20));
     Content.add(buttonspanel, BorderLayout.SOUTH);
-    buttonspanel.add(NextToModidy);
-    buttonspanel.add(BackToStart);
+    buttonspanel.add(nextToModidy);
+    buttonspanel.add(backToStart);
 }
 
-private void AddGrade_Process(JFrame NewGrade,JButton ConfirmGrade,JButton cancelGrade){
+private void addGrade_Process(JFrame NewGrade, JButton ConfirmGrade, JButton cancelGrade){
     NewGrade.setSize(300, 300);
     NewGrade.setVisible(true);
     JPanel forText = new JPanel();
@@ -533,7 +540,7 @@ private void AddGrade_Process(JFrame NewGrade,JButton ConfirmGrade,JButton cance
     forText.add(Describtion);
     forText.add(Box.createHorizontalStrut(60));
     forText.add(Box.createVerticalStrut(20));
-    forText.add(GradesField);
+    forText.add(gradesField);
     forText.add(Box.createVerticalStrut(50));
     forText.add(typeOfGrade);
     forText.add(Box.createVerticalStrut(50));
@@ -543,7 +550,7 @@ private void AddGrade_Process(JFrame NewGrade,JButton ConfirmGrade,JButton cance
     forButtons.add(cancelGrade);
     }
 
-    private void AddGrade_Process2(JFrame NewGrade,JButton ConfirmGrade2,JButton cancelGrade2){
+    private void addGrade_Process2(JFrame NewGrade, JButton ConfirmGrade2, JButton cancelGrade2){
 
         NewGrade.setSize(300, 300);
         NewGrade.setVisible(true);
@@ -560,7 +567,7 @@ private void AddGrade_Process(JFrame NewGrade,JButton ConfirmGrade,JButton cance
         forText.add(Describtion);
         forText.add(Box.createHorizontalStrut(60));
         forText.add(Box.createVerticalStrut(20));
-        forText.add(GradesFieldFromSave);
+        forText.add(gradesFieldFromSave);
         forText.add(Box.createVerticalStrut(50));
         forText.add(typeOfGrade_Saves);
         forText.add(Box.createVerticalStrut(50));
@@ -570,9 +577,9 @@ private void AddGrade_Process(JFrame NewGrade,JButton ConfirmGrade,JButton cance
         forButtons.add(cancelGrade2);
     }
 
-private void AddStudent_Process(JFrame AddNewStudent, JButton ConfirmNewStudent, JButton BackToStudentList){
-    NewStudentName.setText(null);
-    NewStudentSurname.setText(null);
+private void addStudent_Process(JFrame AddNewStudent, JButton ConfirmNewStudent, JButton BackToStudentList){
+    newStudentName.setText(null);
+    newStudentSurname.setText(null);
     JLabel nameOfStudent = new JLabel("Введите имя студента");
     nameOfStudent.setFont(new Font("Verdana", Font.PLAIN, 18));
     JLabel surnameOfStudent = new JLabel("Введите фамилию студента");
@@ -587,11 +594,11 @@ private void AddStudent_Process(JFrame AddNewStudent, JButton ConfirmNewStudent,
     addpanel.setLayout(new BoxLayout(addpanel, BoxLayout.Y_AXIS));
     addpanel.add(nameOfStudent);
     addpanel.add(Box.createVerticalStrut(10));
-    addpanel.add(NewStudentName);
+    addpanel.add(newStudentName);
     addpanel.add(Box.createVerticalStrut(50));
     addpanel.add(surnameOfStudent);
     addpanel.add(Box.createVerticalStrut(10));
-    addpanel.add(NewStudentSurname);
+    addpanel.add(newStudentSurname);
     addpanel.add(Box.createVerticalStrut(50));
     buttons1.add(Box.createHorizontalStrut(50));
     buttons1.add(ConfirmNewStudent);
@@ -599,43 +606,43 @@ private void AddStudent_Process(JFrame AddNewStudent, JButton ConfirmNewStudent,
     buttons1.add(BackToStudentList);
 }
 
-private void MainReport(JFrame newDiscipline){
+private void mainReport(JFrame newDiscipline){
     newDiscipline.setVisible(false);
-    NewGroup.setSize(600, 400);
-    NewGroup.setVisible(true);
-    JLabel NameOfGroup = new JLabel("Группа: " + StudentGroup.getText());
-    JLabel disciplineName = new JLabel("Дисциплина: " + DisciplineName.getText());
-    JLabel TeacherNames = new JLabel("Преподователь: " + TeachersName.getText() + " " + TeachersSurname.getText());
+    newGroup.setSize(600, 400);
+    newGroup.setVisible(true);
+    JLabel NameOfGroup = new JLabel("Группа: " + studentGroup.getText());
+    JLabel disciplineName = new JLabel("Дисциплина: " + this.disciplineName.getText());
+    JLabel TeacherNames = new JLabel("Преподователь: " + teachersName.getText() + " " + teachersSurname.getText());
     JPanel grouppanel = new JPanel();
     JPanel AddStudent = new JPanel();
     grouppanel.setLayout(new BoxLayout(grouppanel, BoxLayout.Y_AXIS));
     AddStudent.setLayout(new BoxLayout(AddStudent, BoxLayout.Y_AXIS));
-    NewGroup.add(grouppanel, BorderLayout.NORTH);
-    NewGroup.add(AddStudent, BorderLayout.EAST);
-    NewGroup.add(forListOfStudent, BorderLayout.CENTER);
+    newGroup.add(grouppanel, BorderLayout.NORTH);
+    newGroup.add(AddStudent, BorderLayout.EAST);
+    newGroup.add(forListOfStudent, BorderLayout.CENTER);
     grouppanel.add(NameOfGroup, BorderLayout.CENTER);
     grouppanel.add(Box.createVerticalStrut(10));
     grouppanel.add(disciplineName, BorderLayout.CENTER);
     grouppanel.add(Box.createVerticalStrut(10));
     grouppanel.add(TeacherNames, BorderLayout.CENTER);
-    if ((StudentGroup.getText().isEmpty()) || (TeachersName.getText().isEmpty()) || (TeachersSurname.getText().isEmpty()) || (DisciplineName.getText().isEmpty())) {
+    if ((studentGroup.getText().isEmpty()) || (teachersName.getText().isEmpty()) || (teachersSurname.getText().isEmpty()) || (this.disciplineName.getText().isEmpty())) {
         JOptionPane.showMessageDialog(null, "Не введены данные", "Ошибка!", JOptionPane.ERROR_MESSAGE);
-        NewGroup.setVisible(false);
+        newGroup.setVisible(false);
         newDiscipline.setVisible(true);
     }
 
-    AddStudent.add(this.AddStudent);
+    AddStudent.add(this.addStudent);
     AddStudent.add(Box.createVerticalStrut(10));
-    AddStudent.add(DeleteStudent);
+    AddStudent.add(deleteStudent);
     AddStudent.add(Box.createVerticalStrut(10));
-    AddStudent.add(GradesOfStudent);
+    AddStudent.add(gradesOfStudent);
     AddStudent.add(Box.createVerticalStrut(100));
-    AddStudent.add(NextToSave, BorderLayout.SOUTH);
+    AddStudent.add(nextToSave, BorderLayout.SOUTH);
     AddStudent.add(Box.createVerticalStrut(10));
-    AddStudent.add(BackToDisciplineCreation, BorderLayout.SOUTH);
+    AddStudent.add(backToDisciplineCreation, BorderLayout.SOUTH);
 }
 
-private void NextToSave_Process(JFrame save,DefaultListModel<Student> students){
+private void nextToSave_Process(JFrame save, DefaultListModel<Student> students){
     save.setSize(600, 600);
     save.setVisible(true);
     Object[] Headers = {"Group", "Name", "Surname", "Grades"};
@@ -652,12 +659,14 @@ private void NextToSave_Process(JFrame save,DefaultListModel<Student> students){
     JPanel ForButtons = new JPanel();
     save.add(ForButtons, BorderLayout.SOUTH);
     ForButtons.setLayout(new BoxLayout(ForButtons, BoxLayout.X_AXIS));
-    ForButtons.add(Box.createHorizontalStrut(140));
-    ForButtons.add(SaveReport);
+    ForButtons.add(Box.createHorizontalStrut(100));
+    ForButtons.add(saveReport);
     ForButtons.add(Box.createHorizontalStrut(20));
-    ForButtons.add(ToExcel);
+    ForButtons.add(toExcel);
     ForButtons.add(Box.createHorizontalStrut(20));
-    ForButtons.add(BackToReport);
+    ForButtons.add(backToReport);
+    ForButtons.add(Box.createHorizontalStrut(20));
+    ForButtons.add(exit);
     title1.setFont(new Font("Verdana", Font.PLAIN, 18));
     JPanel forTitle = new JPanel();
     table.setModel(defaultTableModel);
@@ -670,30 +679,30 @@ private void NextToSave_Process(JFrame save,DefaultListModel<Student> students){
     save.setDefaultCloseOperation(EXIT_ON_CLOSE);
 }
 
-private void SaveReport_Process(){
-    ForSaveReport.setSize(300, 300);
-    ForSaveReport.setVisible(true);
+private void saveReport_Process(){
+    forSaveReport.setSize(300, 300);
+    forSaveReport.setVisible(true);
     JLabel SaveName = new JLabel("Введите название");
     JPanel ForName = new JPanel();
     JPanel ForButtonSave = new JPanel();
     ForButtonSave.setLayout(new BoxLayout(ForButtonSave, BoxLayout.X_AXIS));
     ForName.setLayout(new BoxLayout(ForName, BoxLayout.Y_AXIS));
     ForButtonSave.add(Box.createHorizontalStrut(30));
-    ForButtonSave.add(ConfirmSave);
+    ForButtonSave.add(confirmSave);
     ForButtonSave.add(Box.createHorizontalStrut(20));
-    ForButtonSave.add(CancelSave);
+    ForButtonSave.add(cancelSave);
     SaveName.setFont(font);
-    ForSaveReport.add(ForName, BorderLayout.CENTER);
+    forSaveReport.add(ForName, BorderLayout.CENTER);
     ForName.add(Box.createVerticalStrut(50));
     ForName.add(SaveName);
     ForName.add(Box.createVerticalStrut(30));
-    ForName.add(NameOfSave);
+    ForName.add(nameOfSave);
     ForName.add(Box.createVerticalStrut(100));
-    ForSaveReport.add(ForButtonSave, BorderLayout.SOUTH);
-    ForSaveReport.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    forSaveReport.add(ForButtonSave, BorderLayout.SOUTH);
+    forSaveReport.setDefaultCloseOperation(EXIT_ON_CLOSE);
 }
 
-private void NewGrades_Process(JFrame NewGrades,JPanel listpanel,JScrollPane jScrollPane2,JButton addGrade,JButton deleteGrade){
+private void newGrades_Process(JFrame NewGrades, JPanel listpanel, JScrollPane jScrollPane2, JButton addGrade, JButton deleteGrade){
     JPanel ButtonsPanel = new JPanel();
     JPanel ForLabel = new JPanel();
     ButtonsPanel.setLayout(new BoxLayout(ButtonsPanel, BoxLayout.Y_AXIS));
@@ -709,11 +718,11 @@ private void NewGrades_Process(JFrame NewGrades,JPanel listpanel,JScrollPane jSc
     ButtonsPanel.add(Box.createVerticalStrut(20));
     ButtonsPanel.add(deleteGrade, BorderLayout.EAST);
     ButtonsPanel.add(Box.createVerticalStrut(20));
-    ButtonsPanel.add(ReadyGrade, BorderLayout.EAST);
+    ButtonsPanel.add(readyGrade, BorderLayout.EAST);
     ButtonsPanel.add(Box.createVerticalStrut(100));
 }
 
-private void Open_Process(JFrame OpenFrame,JButton BackToStart){
+private void open_Process(JFrame OpenFrame, JButton BackToStart){
     OpenFrame.setSize(600, 400);
     OpenFrame.setVisible(true);
     OpenFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -725,62 +734,62 @@ private void Open_Process(JFrame OpenFrame,JButton BackToStart){
     JPanel ForButtons = new JPanel();
     ForButtons.setLayout(new BoxLayout(ForButtons, BoxLayout.Y_AXIS));
     ForButtons.add(Box.createVerticalStrut(30));
-    ForButtons.add(OpenListSaves);
+    ForButtons.add(openListSaves);
     ForButtons.add(Box.createVerticalStrut(20));
-    ForButtons.add(DeleteSave);
+    ForButtons.add(deleteSave);
     ForButtons.add(Box.createVerticalStrut(20));
     ForButtons.add(BackToStart);
     OpenFrame.add(ForButtons, BorderLayout.EAST);
     OpenFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 }
 
-private void Excel_Process(){
-    ExcelFrame.setSize(300, 300);
-    ExcelFrame.setVisible(true);
+private void excel_Process(){
+    excelFrame.setSize(300, 300);
+    excelFrame.setVisible(true);
     JLabel NameOfExcel = new JLabel("Введите название");
     JPanel ForNameOfExcel = new JPanel();
     JPanel ForExcelButtons = new JPanel();
     ForExcelButtons.setLayout(new BoxLayout(ForExcelButtons, BoxLayout.X_AXIS));
     ForNameOfExcel.setLayout(new BoxLayout(ForNameOfExcel, BoxLayout.Y_AXIS));
     ForExcelButtons.add(Box.createHorizontalStrut(30));
-    ForExcelButtons.add(SaveExcel);
+    ForExcelButtons.add(saveExcel);
     ForExcelButtons.add(Box.createHorizontalStrut(20));
-    ForExcelButtons.add(BackToTable);
+    ForExcelButtons.add(backToTable);
     NameOfExcel.setFont(font);
-    ExcelFrame.add(ForNameOfExcel, BorderLayout.CENTER);
+    excelFrame.add(ForNameOfExcel, BorderLayout.CENTER);
     ForNameOfExcel.add(Box.createVerticalStrut(50));
     ForNameOfExcel.add(NameOfExcel);
     ForNameOfExcel.add(Box.createVerticalStrut(30));
-    ForNameOfExcel.add(ExcelName);
+    ForNameOfExcel.add(excelName);
     ForNameOfExcel.add(Box.createVerticalStrut(100));
-    ExcelFrame.add(ForExcelButtons, BorderLayout.SOUTH);
-    ExcelFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    excelFrame.add(ForExcelButtons, BorderLayout.SOUTH);
+    excelFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 }
 
-private void AddStudentFromSaves_Process(JLabel group1, JLabel discipline1, JLabel name1){
+private void addStudentFromSaves_Process(JLabel group1, JLabel discipline1, JLabel name1,JButton openFromSave,JButton deleteStudentFromSave,JButton nextToTableFromSave,JButton backToSaves,JButton gradesFromSave){
     JPanel GroupPanel = new JPanel();
     JPanel NewStudentFromSave = new JPanel();
     GroupPanel.setLayout(new BoxLayout(GroupPanel, BoxLayout.Y_AXIS));
     NewStudentFromSave.setLayout(new BoxLayout(NewStudentFromSave, BoxLayout.Y_AXIS));
-    NewGroup.add(GroupPanel, BorderLayout.NORTH);
-    NewGroup.add(NewStudentFromSave, BorderLayout.EAST);
+    newGroup.add(GroupPanel, BorderLayout.NORTH);
+    newGroup.add(NewStudentFromSave, BorderLayout.EAST);
     GroupPanel.add(group1, BorderLayout.CENTER);
     GroupPanel.add(Box.createVerticalStrut(10));
     GroupPanel.add(discipline1, BorderLayout.CENTER);
     GroupPanel.add(Box.createVerticalStrut(10));
     GroupPanel.add(name1, BorderLayout.CENTER);
-    NewStudentFromSave.add(OpenFromSave);
+    NewStudentFromSave.add(openFromSave);
     NewStudentFromSave.add(Box.createVerticalStrut(10));
-    NewStudentFromSave.add(DeleteStudentFromSave);
+    NewStudentFromSave.add(deleteStudentFromSave);
     NewStudentFromSave.add(Box.createVerticalStrut(10));
-    NewStudentFromSave.add(GradesFromSave);
+    NewStudentFromSave.add(gradesFromSave);
     NewStudentFromSave.add(Box.createVerticalStrut(100));
-    NewStudentFromSave.add(NextToTableFromSave, BorderLayout.SOUTH);
+    NewStudentFromSave.add(nextToTableFromSave, BorderLayout.SOUTH);
     NewStudentFromSave.add(Box.createVerticalStrut(10));
-    NewStudentFromSave.add(BackToSaves, BorderLayout.SOUTH);
+    NewStudentFromSave.add(backToSaves, BorderLayout.SOUTH);
 }
 
-private void OpenSavesAddNewStudent_Process(JFrame newstudent1,JButton OpenSaves_ConfirmNewStudent,JButton OpenSaves_BackToStudentsList){
+private void openSavesAddNewStudent_Process(JFrame newstudent1, JButton OpenSaves_ConfirmNewStudent, JButton OpenSaves_BackToStudentsList){
     JLabel nameOfStudent = new JLabel("Введите имя студента");
     nameOfStudent.setFont(new Font("Verdana", Font.PLAIN, 18));
     JLabel surnameOfStudent = new JLabel("Введите фамилию студента");
@@ -795,11 +804,11 @@ private void OpenSavesAddNewStudent_Process(JFrame newstudent1,JButton OpenSaves
     addpanel.setLayout(new BoxLayout(addpanel, BoxLayout.Y_AXIS));
     addpanel.add(nameOfStudent);
     addpanel.add(Box.createVerticalStrut(10));
-    addpanel.add(OpenSaves_NameOfStudent);
+    addpanel.add(openSaves_NameOfStudent);
     addpanel.add(Box.createVerticalStrut(50));
     addpanel.add(surnameOfStudent);
     addpanel.add(Box.createVerticalStrut(10));
-    addpanel.add(OpenSaves_SurnameOfStudent);
+    addpanel.add(openSaves_SurnameOfStudent);
     addpanel.add(Box.createVerticalStrut(50));
     buttons1.add(Box.createHorizontalStrut(50));
     buttons1.add(OpenSaves_ConfirmNewStudent);
@@ -807,7 +816,7 @@ private void OpenSavesAddNewStudent_Process(JFrame newstudent1,JButton OpenSaves
     buttons1.add(OpenSaves_BackToStudentsList);
 }
 
-private void GradeFromSaves_Process(JFrame NewGrade, JPanel Gradelistpanel,JButton OpenSaves_addGrade,JButton OpenSaves_deleteGrade){
+private void gradeFromSaves_Process(JFrame NewGrade, JPanel Gradelistpanel, JButton OpenSaves_addGrade, JButton OpenSaves_deleteGrade){
     JPanel ForGradePanelButtons = new JPanel();
     JPanel ForLabel = new JPanel();
     ForGradePanelButtons.setLayout(new BoxLayout(ForGradePanelButtons, BoxLayout.Y_AXIS));
@@ -822,13 +831,13 @@ private void GradeFromSaves_Process(JFrame NewGrade, JPanel Gradelistpanel,JButt
     ForGradePanelButtons.add(Box.createVerticalStrut(20));
     ForGradePanelButtons.add(OpenSaves_deleteGrade, BorderLayout.EAST);
     ForGradePanelButtons.add(Box.createVerticalStrut(20));
-    ForGradePanelButtons.add(OpenSaves_ready, BorderLayout.EAST);
+    ForGradePanelButtons.add(openSaves_ready, BorderLayout.EAST);
     ForGradePanelButtons.add(Box.createVerticalStrut(100));
 }
 
 
 
-private void OpenSavesNextToSave_Process(JFrame save,DefaultListModel<Student> students){
+private void openSavesNextToSave_Process(JFrame save, DefaultListModel<Student> students){
     save.setSize(600, 600);
     save.setVisible(true);
     Object[] Headers = {"Group", "Name", "Surname", "Grades"};
@@ -846,12 +855,14 @@ private void OpenSavesNextToSave_Process(JFrame save,DefaultListModel<Student> s
     JPanel ForButtons1 = new JPanel();
     save.add(ForButtons1, BorderLayout.SOUTH);
     ForButtons1.setLayout(new BoxLayout(ForButtons1, BoxLayout.X_AXIS));
-    ForButtons1.add(Box.createHorizontalStrut(140));
-    ForButtons1.add(SaveFromSave);
+    ForButtons1.add(Box.createHorizontalStrut(100));
+    ForButtons1.add(saveFromSave);
     ForButtons1.add(Box.createHorizontalStrut(20));
-    ForButtons1.add(ToExcelFromSave);
+    ForButtons1.add(toExcelFromSave);
     ForButtons1.add(Box.createHorizontalStrut(20));
-    ForButtons1.add(BackToStudents);
+    ForButtons1.add(backToStudents);
+    ForButtons1.add(Box.createHorizontalStrut(20));
+    ForButtons1.add(exit);
     title1.setFont(new Font("Verdana", Font.PLAIN, 18));
     JPanel forTitle = new JPanel();
     table.setModel(defaultTableModel);
@@ -864,7 +875,7 @@ private void OpenSavesNextToSave_Process(JFrame save,DefaultListModel<Student> s
     save.setDefaultCloseOperation(EXIT_ON_CLOSE);
 }
 
-private void SaveFromSave_Process(JFrame SavingName,JButton CommitSave2,JButton CancelSave2,JTextField Forsave2){
+private void saveFromSave_Process(JFrame SavingName, JButton CommitSave2, JButton CancelSave2, JTextField Forsave2){
     SavingName.setSize(300, 300);
     SavingName.setVisible(true);
     JLabel SaveName = new JLabel("Введите название");
