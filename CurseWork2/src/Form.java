@@ -646,6 +646,7 @@ private void nextToSave_Process(JFrame save, DefaultListModel<Student> students)
     save.setSize(600, 600);
     save.setVisible(true);
     Object[] Headers = {"Group", "Name", "Surname", "Grades"};
+    DefaultTableModel defaultTableModel = new DefaultTableModel();
     defaultTableModel.setColumnIdentifiers(Headers);
     for (int i = 0; i < students.size(); i++) {
         Object[] o = new Object[4];
