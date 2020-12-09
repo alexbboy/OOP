@@ -15,7 +15,7 @@ public class ShapeAccumulator {
     private final List<OnChangeListener> changeListeners = new ArrayList<>();
 
     public List<Shape> getShapes() {
-        return shapes;
+        return Collections.unmodifiable list(shapes);
     }
 
     public void clear() {
