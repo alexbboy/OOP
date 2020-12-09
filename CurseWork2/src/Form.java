@@ -456,6 +456,7 @@ public class Form extends JFrame {
                                 Integer.parseInt(gradesFieldFromSaveTxt.getText());
                             } catch (NumberFormatException n) {
                                 JOptionPane.showMessageDialog(null, "Enter a number", "Error!", JOptionPane.ERROR_MESSAGE);
+                            return;
                             }
                             if ((Integer.parseInt(gradesFieldFromSaveTxt.getText()) != 1) && (Integer.parseInt(gradesFieldFromSaveTxt.getText()) != 2) && (Integer.parseInt(gradesFieldFromSaveTxt.getText()) != 3) && (Integer.parseInt(gradesFieldFromSaveTxt.getText()) != 4) && (Integer.parseInt(gradesFieldFromSaveTxt.getText()) != 5)) {
                                 JOptionPane.showMessageDialog(null, "Enter a grade 1-5!", "Error!", JOptionPane.ERROR_MESSAGE);
