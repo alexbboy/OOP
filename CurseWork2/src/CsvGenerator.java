@@ -42,9 +42,7 @@ public class CsvGenerator {
 }
 
 enum CsvSeparator {
-    COMMA(","),
-
-    TAB("\t");
+    COMMA(",");
 
     private final String separator;
 

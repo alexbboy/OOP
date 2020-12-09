@@ -2,11 +2,10 @@ import java.io.Serializable;
 
 public class ReportData implements Serializable {
     public static final long serialVersionUID = -1493672579665473344L;
-    private String name;
-    private Discipline discipline;
+    private final String name;
+    private final Discipline discipline;
 
     public ReportData(String name, Discipline discipline){
-        this.name=new String();
         this.name=name;
         this.discipline=discipline;
     }

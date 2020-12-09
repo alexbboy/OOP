@@ -6,17 +6,15 @@ import java.util.List;
 
     public class Student implements Serializable {
         private static final long serialVersionUID = 2800700471898873736L;
-        private String name;
-        private String surname;
-        private Integer group;
-        private List<Grade> grades;
+        private final String name;
+        private final String surname;
+        private final Integer group;
+        private final List<Grade> grades;
         Student(int group,String name,String surname){
-            this.name=new String();
             this.name=name;
-            this.surname=new String();
             this.surname=surname;
             this.group=group;
-            this.grades=new ArrayList<Grade>();
+            this.grades= new ArrayList<>();
         }
         public List<Grade> getGrades(){
             return Collections.unmodifiableList(grades);

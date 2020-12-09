@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Group implements Serializable {
     private static final long serialVersionUID = -1885975818066730381L;
-    private Integer group;
-    private List<Student> students;
+    private final Integer group;
+    private final List<Student> students;
     Group(int group){
         this.group=group;
         this.students=new ArrayList<>();

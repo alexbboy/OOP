@@ -1,20 +1,14 @@
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Discipline implements Serializable {
     private static final long serialVersionUID = 198066817925244126L;
-    private String TeacherName;
-    private String TeacherSurname;
-    private String discipline;
-    private Group groups;
+    private final String TeacherName;
+    private final String TeacherSurname;
+    private final String discipline;
+    private final Group groups;
     Discipline(String teacherName,String teacherSurname,String discipline,Group group){
-        this.TeacherName=new String();
         this.TeacherName=teacherName;
-        this.TeacherSurname=new String();
         this.TeacherSurname=teacherSurname;
-        this.discipline=new String();
         this.discipline=discipline;
         this.groups=group;
     }
